@@ -1,0 +1,25 @@
+#recipientAlert {
+    display: none;
+}
+
+.actions {
+    display: none !important;
+}
+
+.actions.show {
+    display: flex !important;
+}
+
+#example th:last-child,
+#example td:last-child {
+    width: 150px !important;
+}
+
+#example th:last-child,
+#example td:last-child {
+    position: sticky !important;
+    right: 0 !important;
+    z-index: 1 !important;
+    background-color: #fff !important;
+    box-shadow: -5px 0 5px -5px rgba(0, 0, 0, 0.3); /* Add shadow to the left */
+}

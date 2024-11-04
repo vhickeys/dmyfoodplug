@@ -1,0 +1,84 @@
+[16-Aug-2024 12:54:23 Africa/lagos] PHP Warning:  Undefined array key "status" in /home/tradbwll/public_html/webadmin/classes/process.php on line 108
+[16-Aug-2024 12:54:23 Africa/lagos] PHP Warning:  move_uploaded_file(../../img/settings/1723809263.png): Failed to open stream: No such file or directory in /home/tradbwll/public_html/webadmin/classes/Settings.php on line 38
+[16-Aug-2024 12:54:23 Africa/lagos] PHP Warning:  move_uploaded_file(): Unable to move &quot;/tmp/phpUOgQ4p&quot; to &quot;../../img/settings/1723809263.png&quot; in /home/tradbwll/public_html/webadmin/classes/Settings.php on line 38
+[16-Aug-2024 13:09:34 Africa/lagos] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in /home/tradbwll/public_html/webadmin/classes/User.php on line 223
+[16-Aug-2024 13:24:20 Africa/lagos] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in /home/tradbwll/public_html/webadmin/classes/User.php on line 223
+[16-Aug-2024 14:47:31 Africa/lagos] PHP Warning:  Undefined array key "status" in /home/tradbwll/public_html/webadmin/classes/process.php on line 151
+[27-Oct-2024 21:32:28 Africa/lagos] PHP Warning:  Undefined array key "status" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 128
+[27-Oct-2024 21:36:16 Africa/lagos] PHP Warning:  Undefined array key "SKU" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 224
+[27-Oct-2024 21:36:16 Africa/lagos] PHP Warning:  Undefined array key "soldout" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 233
+[27-Oct-2024 21:36:16 Africa/lagos] PHP Warning:  Undefined array key "trending" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 234
+[27-Oct-2024 21:36:16 Africa/lagos] PHP Warning:  Undefined array key "status" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 235
+[27-Oct-2024 22:09:52 Africa/lagos] PHP Warning:  Undefined array key "SKU" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 224
+[27-Oct-2024 22:09:52 Africa/lagos] PHP Warning:  Undefined array key "soldout" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 233
+[27-Oct-2024 22:09:52 Africa/lagos] PHP Warning:  Undefined array key "trending" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 234
+[27-Oct-2024 22:09:52 Africa/lagos] PHP Warning:  Undefined array key "status" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 235
+[27-Oct-2024 22:11:04 Africa/lagos] PHP Warning:  Undefined array key "SKU" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 224
+[27-Oct-2024 22:11:04 Africa/lagos] PHP Warning:  Undefined array key "soldout" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 233
+[27-Oct-2024 22:11:04 Africa/lagos] PHP Warning:  Undefined array key "trending" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 234
+[27-Oct-2024 22:11:04 Africa/lagos] PHP Warning:  Undefined array key "status" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 235
+[27-Oct-2024 22:28:34 Africa/lagos] PHP Warning:  Undefined array key "SKU" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 224
+[27-Oct-2024 22:28:34 Africa/lagos] PHP Warning:  Undefined array key "soldout" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 233
+[27-Oct-2024 22:28:34 Africa/lagos] PHP Warning:  Undefined array key "trending" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 234
+[27-Oct-2024 22:28:34 Africa/lagos] PHP Warning:  Undefined array key "status" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 235
+[27-Oct-2024 22:40:25 Africa/lagos] PHP Warning:  Undefined array key "SKU" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 224
+[27-Oct-2024 22:40:25 Africa/lagos] PHP Warning:  Undefined array key "soldout" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 233
+[27-Oct-2024 22:40:25 Africa/lagos] PHP Warning:  Undefined array key "trending" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 234
+[27-Oct-2024 22:40:25 Africa/lagos] PHP Warning:  Undefined array key "status" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 235
+[28-Oct-2024 14:12:54 Africa/lagos] PHP Warning:  Undefined array key "status" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 130
+[28-Oct-2024 14:18:56 Africa/lagos] PHP Warning:  Undefined array key "status" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 130
+[28-Oct-2024 14:37:55 Africa/lagos] PHP Warning:  Undefined array key "status" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 130
+[28-Oct-2024 14:39:31 Africa/lagos] PHP Warning:  Undefined array key "status" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 130
+[28-Oct-2024 14:58:11 Africa/lagos] PHP Warning:  Undefined array key "status" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 130
+[28-Oct-2024 17:46:08 Africa/lagos] PHP Warning:  Undefined array key "status" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 130
+[29-Oct-2024 04:18:06 Africa/lagos] PHP Warning:  foreach() argument must be of type array|object, null given in /home/dmyfoodp/public_html/webadmin/classes/Order.php on line 76
+[29-Oct-2024 04:18:06 Africa/lagos] PHP Warning:  foreach() argument must be of type array|object, null given in /home/dmyfoodp/public_html/webadmin/classes/Order.php on line 106
+[29-Oct-2024 04:18:15 Africa/lagos] PHP Warning:  foreach() argument must be of type array|object, null given in /home/dmyfoodp/public_html/webadmin/classes/Order.php on line 76
+[29-Oct-2024 04:18:15 Africa/lagos] PHP Warning:  foreach() argument must be of type array|object, null given in /home/dmyfoodp/public_html/webadmin/classes/Order.php on line 106
+[01-Nov-2024 16:03:46 Africa/lagos] PHP Warning:  Undefined array key "SKU" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 226
+[01-Nov-2024 16:03:46 Africa/lagos] PHP Warning:  Undefined array key "soldout" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 235
+[01-Nov-2024 16:03:46 Africa/lagos] PHP Warning:  Undefined array key "trending" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 236
+[01-Nov-2024 16:03:46 Africa/lagos] PHP Warning:  Undefined array key "status" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 237
+[01-Nov-2024 16:07:14 Africa/lagos] PHP Warning:  Undefined array key "SKU" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 226
+[01-Nov-2024 16:07:14 Africa/lagos] PHP Warning:  Undefined array key "soldout" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 235
+[01-Nov-2024 16:07:14 Africa/lagos] PHP Warning:  Undefined array key "trending" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 236
+[01-Nov-2024 16:07:14 Africa/lagos] PHP Warning:  Undefined array key "status" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 237
+[01-Nov-2024 16:09:08 Africa/lagos] PHP Warning:  Undefined array key "SKU" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 226
+[01-Nov-2024 16:09:08 Africa/lagos] PHP Warning:  Undefined array key "soldout" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 235
+[01-Nov-2024 16:09:08 Africa/lagos] PHP Warning:  Undefined array key "trending" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 236
+[01-Nov-2024 16:09:08 Africa/lagos] PHP Warning:  Undefined array key "status" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 237
+[01-Nov-2024 16:09:42 Africa/lagos] PHP Warning:  Undefined array key "SKU" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 226
+[01-Nov-2024 16:09:42 Africa/lagos] PHP Warning:  Undefined array key "soldout" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 235
+[01-Nov-2024 16:09:42 Africa/lagos] PHP Warning:  Undefined array key "trending" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 236
+[01-Nov-2024 16:09:42 Africa/lagos] PHP Warning:  Undefined array key "status" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 237
+[01-Nov-2024 16:14:12 Africa/lagos] PHP Warning:  Undefined array key "SKU" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 226
+[01-Nov-2024 16:14:12 Africa/lagos] PHP Warning:  Undefined array key "soldout" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 235
+[01-Nov-2024 16:14:12 Africa/lagos] PHP Warning:  Undefined array key "trending" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 236
+[01-Nov-2024 16:14:12 Africa/lagos] PHP Warning:  Undefined array key "status" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 237
+[01-Nov-2024 16:16:23 Africa/lagos] PHP Warning:  Undefined array key "SKU" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 226
+[01-Nov-2024 16:16:23 Africa/lagos] PHP Warning:  Undefined array key "soldout" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 235
+[01-Nov-2024 16:16:23 Africa/lagos] PHP Warning:  Undefined array key "trending" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 236
+[01-Nov-2024 16:16:23 Africa/lagos] PHP Warning:  Undefined array key "status" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 237
+[01-Nov-2024 16:19:20 Africa/lagos] PHP Warning:  Undefined array key "SKU" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 226
+[01-Nov-2024 16:19:20 Africa/lagos] PHP Warning:  Undefined array key "soldout" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 235
+[01-Nov-2024 16:19:20 Africa/lagos] PHP Warning:  Undefined array key "trending" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 236
+[01-Nov-2024 16:19:20 Africa/lagos] PHP Warning:  Undefined array key "status" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 237
+[01-Nov-2024 16:31:18 Africa/lagos] PHP Warning:  Undefined array key "soldout" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 158
+[01-Nov-2024 16:31:18 Africa/lagos] PHP Warning:  Undefined array key "trending" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 159
+[01-Nov-2024 16:31:18 Africa/lagos] PHP Warning:  Undefined array key "status" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 160
+[01-Nov-2024 16:32:18 Africa/lagos] PHP Warning:  Undefined array key "SKU" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 226
+[01-Nov-2024 16:32:18 Africa/lagos] PHP Warning:  Undefined array key "soldout" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 235
+[01-Nov-2024 16:32:18 Africa/lagos] PHP Warning:  Undefined array key "trending" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 236
+[01-Nov-2024 16:32:18 Africa/lagos] PHP Warning:  Undefined array key "status" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 237
+[01-Nov-2024 16:46:16 Africa/lagos] PHP Warning:  Undefined array key "soldout" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 158
+[01-Nov-2024 16:46:16 Africa/lagos] PHP Warning:  Undefined array key "trending" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 159
+[01-Nov-2024 16:46:16 Africa/lagos] PHP Warning:  Undefined array key "status" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 160
+[01-Nov-2024 16:50:34 Africa/lagos] PHP Warning:  Undefined array key "soldout" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 158
+[01-Nov-2024 16:50:34 Africa/lagos] PHP Warning:  Undefined array key "trending" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 159
+[01-Nov-2024 16:50:34 Africa/lagos] PHP Warning:  Undefined array key "status" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 160
+[01-Nov-2024 16:53:55 Africa/lagos] PHP Warning:  Undefined array key "status" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 204
+[01-Nov-2024 16:54:42 Africa/lagos] PHP Warning:  Undefined array key "status" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 204
+[01-Nov-2024 16:55:23 Africa/lagos] PHP Warning:  Undefined array key "status" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 204
+[01-Nov-2024 16:57:51 Africa/lagos] PHP Warning:  Undefined array key "status" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 204
+[01-Nov-2024 16:58:21 Africa/lagos] PHP Warning:  Undefined array key "status" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 204
+[01-Nov-2024 16:58:58 Africa/lagos] PHP Warning:  Undefined array key "status" in /home/dmyfoodp/public_html/webadmin/classes/process.php on line 204

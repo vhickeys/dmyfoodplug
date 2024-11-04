@@ -1,0 +1,33 @@
+/* OVERRIDES CODES */
+
+.price-range-cart {
+  display: none;
+}
+
+.dmy-add-cart {
+  border: none !important;
+  border-radius: 6px !important;
+  background: #e2750e !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+}
+
+.dmy-cart-input {
+  width: 130px;
+}
+
+.invoice-main-wrapper-1 {
+  margin-top: 40px !important;
+}
+
+@media only screen and (max-width: 767px) {
+  .dmy-cart-input {
+    width: 100%;
+  }
+
+  .invoice-main-wrapper-1 .invoice-location .title {
+    font-weight: 500;
+    line-height: 1;
+    font-size: 20px;
+  }
+}

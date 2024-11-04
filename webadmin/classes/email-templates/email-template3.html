@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Template</title>
+    <style>
+        /* Reset Styles */
+        body,
+        table,
+        td,
+        th,
+        p {
+            margin: 0;
+            padding: 0;
+            font-family: Open Sans, sans-serif;
+            font-size: 14px;
+            line-height: 1.4;
+            color: #000;
+        }
+
+        /* Container Styles */
+        .container {
+            max-width: 670px;
+            margin: 50px auto 10px;
+            background-color: #fff;
+            border-top: solid 10px green;
+            border-radius: 3px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        }
+
+        /* Header Styles */
+        .header td,
+        .header th {
+            padding: 15px 25px;
+            text-align: left;
+        }
+
+        /* Body Styles */
+        .body-content td,
+        .body-content th {
+            padding: 25px;
+        }
+
+        /* Footer Styles */
+        .footer td,
+        .footer th {
+            padding: 15px 25px;
+        }
+
+        .signature img {
+            max-width: 60px;
+            height: auto;
+            padding: 10px 0 20px 0;
+        }
+    </style>
+</head>
+
+<body style="background-color: #e2e1e0;">
+    <table class="container" cellpadding="0" cellspacing="0">
+        <!-- Header -->
+        <tr class="header">
+            <td>
+                <img src="[Image Url]" alt="[Name of Organization]" style="max-width: 75px; height: auto;">
+            </td>
+            <td style="text-align: right; font-size: 12px;">
+                [Address]<br><br>[Date]
+            </td>
+        </tr>
+        <!-- Body Content -->
+        <tr class="body-content">
+            <td colspan="2">
+                <p style="padding: 15px 0;"><strong>Dear [Name],</strong></p>
+                <p style="text-align: center; padding: 10px 0 20px 0;"><strong>[Subject of Mail]</strong></p>
+                <!-- Email Content -->
+                <p>[Email Content]</p>
+            </td>
+        </tr>
+        <!-- Footer -->
+        <tr class="footer">
+            <td colspan="2">
+                <strong>[Sign Off],</strong><br>
+                <div class="signature">
+                    <img src="https://www.aef-events.com/webadmin/resources/[Signature]" alt="[Name of Organization]"><br>
+                    <strong>[Sender Name]<br>
+                        [Designation]</strong>
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>
