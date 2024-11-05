@@ -1,0 +1,167 @@
+<?php
+
+require('classes/functions.php');
+
+authCheck();
+
+$title = "Create Shipping Address";
+include_once('components/head.php');
+include_once('components/nav-header.php');
+include_once('components/header.php');
+include_once('components/sidebar.php');
+
+$pickup_locations = $shipping->getAllPickupLoc();
+
+?>
+
+<!--**********************************
+            Content body start
+***********************************-->
+
+<div class="content-body">
+    <!-- row -->
+    <div class="page-titles">
+        <ol class="breadcrumb">
+            <li>
+                <h5 class="bc-title">Shipping Addresses</h5>
+            </li>
+            <li class="breadcrumb-item"><a href="index.php">
+                    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.125 6.375L8.5 1.41667L14.875 6.375V14.1667C14.875 14.5424 14.7257 14.9027 14.4601 15.1684C14.1944 15.4341 13.8341 15.5833 13.4583 15.5833H3.54167C3.16594 15.5833 2.80561 15.4341 2.53993 15.1684C2.27426 14.9027 2.125 14.5424 2.125 14.1667V6.375Z" stroke="#2C2C2C" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M6.375 15.5833V8.5H10.625V15.5833" stroke="#2C2C2C" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    Home </a>
+            </li>
+        </ol>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+
+            <?php include_once 'components/alert_messages.php' ?>
+
+            <div class="col-xl-6 col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Creates New Shipping</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="basic-form">
+                            <form action="classes/process.php?action=create-shipping" method="POST" enctype="multipart/form-data">
+                                <div class="mb-3 row">
+                                    <label class="col-sm-3 col-form-label">Shipping Location:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="location" class="form-control" placeholder="Enter Name of Location">
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 row">
+                                    <label class="col-sm-3 col-form-label">Shipping Fee:</label>
+                                    <div class="col-sm-9">
+                                        <input type="number" name="shipping_fee" class="form-control" placeholder="Enter Shipping Fee">
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 row">
+                                    <label class="col-sm-3 col-form-label">Any other info about shipping address:</label>
+                                    <div class="col-sm-9">
+                                        <textarea name="other_info" class="form-control" placeholder="Enter Any Other Shipping Information (Optional)"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 row">
+                                    <div class="col-sm-3">Status:</div>
+                                    <div class="col-sm-9">
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="status" type="checkbox">
+                                            <label class="form-check-label text-danger">
+                                                Clicking this will hide the shipping details from the customer!
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="my-3 row justify-content-center">
+                                    <button type="submit" name="submit-shipping" class="btn btn-primary">Create a New
+                                        Shipping Address</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-6 col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">View All Shipping Addresses (Pickup Location)</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="example" class="display table" style="min-width: 845px">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Location</th>
+                                        <th>Shipping Fee</th>
+                                        <th>Status</th>
+                                        <th>Date Created</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $id = 1;
+                                    if ($pickup_locations == []) {
+                                    } else {
+                                        foreach ($pickup_locations as $pickup_location) {
+                                    ?>
+
+                                            <tr>
+                                                <td><?= $id ?></td>
+                                                <td><?= $pickup_location['location'] ?></td>
+                                                <td>N<?= $pickup_location['shipping_fee'] ?></td>
+
+                                                <td>
+                                                    <?php if ($pickup_location['status'] == '1') : ?>
+                                                        <span class="text-danger">Hidden!</span>
+                                                    <?php elseif ($pickup_location['status'] == '0') : ?>
+                                                        <span class="text-success">Visible!</span>
+                                                    <?php endif; ?>
+                                                </td>
+
+                                                <td><?php echo date("H:i:s d-M-Y", strtotime($pickup_location['date'])) ?></td>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <?php if ($_SESSION['user_data']['role'] == "2") : ?>
+                                                            <button href="delete-pickup_location.php?pId=<?= $pickup_location['id'] ?>" class="btn btn-danger shadow btn-xs sharp" disabled><i class="fa fa-trash"></i></button>
+                                                        <?php endif; ?>
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                    <?php
+                                            $id++;
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--**********************************
+            Content body end
+***********************************-->
+
+<?php
+include_once('components/footer.php');
+include_once('components/scripts.php');
+?>

@@ -12,7 +12,13 @@ include_once 'components/header.php';
 include_once 'components/sidebar.php';
 
 $order_details = $order->getOrderDetails($_GET['ord'], $_GET['trkNo']);
-$order = $order->getOrder($_GET['ord'], $_GET['trkNo']);
+$order_info = $order->getOrder($_GET['ord'], $_GET['trkNo']);
+
+$shipping_id = $order_info['pickup_location'];
+$shipping_details = $order->getShippingDetails($shipping_id);
+$shipping_location = $shipping_details['location'];
+$shipping_fee = $shipping_details['shipping_fee'];
+
 // echo "<pre>";
 // print_r($order_details);
 
@@ -52,6 +58,7 @@ $order = $order->getOrder($_GET['ord'], $_GET['trkNo']);
                         <div class="invoice-location">
                             <h6 class="title">Order Summary</h6>
                             <span class="number">Tracking no: <?= $userOrderExists['tracking_no'] ?></span>
+                            <span class="number">Pick Up Location: <?= $shipping_location ?></span>
                             <span class="email"><?= $webSetting['email'] ?></span>
                             <span class="website">www.dmyfoodplug.com</span>
                         </div>
@@ -96,7 +103,8 @@ $order = $order->getOrder($_GET['ord'], $_GET['trkNo']);
                                         endforeach;
                                     endif;
 
-                                    $shipping = 3000; // Shipping cost
+                                    // print_r($shipping_details);
+                                    $shipping = $shipping_fee ?? 3000; // Shipping cost
                                     $grand_total = $subtotal + $shipping; // Calculate grand total
                                     ?>
 
@@ -104,8 +112,9 @@ $order = $order->getOrder($_GET['ord'], $_GET['trkNo']);
                                         <td colspan="3" class="text-end f-w-600">SubTotal</td>
                                         <td class="text-right">N<?= number_format($subtotal, 0, '.', ',') ?></td>
                                     </tr>
+
                                     <tr>
-                                        <td colspan="3" class="text-end f-w-600">Shipping</td>
+                                        <td colspan="3" class="text-end f-w-600">Shipping Fee</td>
                                         <td class="text-right">N<?= number_format($shipping, 0, '.', ',') ?></td>
                                     </tr>
                                     <tr>
@@ -152,16 +161,16 @@ $order = $order->getOrder($_GET['ord'], $_GET['trkNo']);
                     <form id="paymentForm">
                         <div class="row">
                             <input type="hidden" value="<?= $_GET['ord'] ?>" id="user_id">
-                            <input type="hidden" value="<?= $order['id'] ?>" id="order_id">
+                            <input type="hidden" value="<?= $order_info['id'] ?>" id="order_id">
                             <input type="hidden" value="<?= $_GET['trkNo'] ?>" id="tracking_no">
 
-                            <input type="hidden" value="<?= $order['first_name'] ?>" class="form-control h-auto p-3 border-color-primary" id="first_name" required="">
+                            <input type="hidden" value="<?= $order_info['first_name'] ?>" class="form-control h-auto p-3 border-color-primary" id="first_name" required="">
 
-                            <input type="hidden" value="<?= $order['last_name'] ?>" class="form-control h-auto p-3 border-color-primary" id="last_name" required="">
+                            <input type="hidden" value="<?= $order_info['last_name'] ?>" class="form-control h-auto p-3 border-color-primary" id="last_name" required="">
 
-                            <input type="hidden" value="<?= $order['phone'] ?>" class="form-control h-auto p-3 border-color-primary" id="phone" required="">
+                            <input type="hidden" value="<?= $order_info['phone'] ?>" class="form-control h-auto p-3 border-color-primary" id="phone" required="">
 
-                            <input type="hidden" value="<?= $order['email'] ?>" class="form-control h-auto p-3 border-color-primary" id="email" required="">
+                            <input type="hidden" value="<?= $order_info['email'] ?>" class="form-control h-auto p-3 border-color-primary" id="email" required="">
 
                             <input type="hidden" value="<?= $grand_total ?>" class="form-control h-auto p-3 border-color-primary" id="amount" required="">
 

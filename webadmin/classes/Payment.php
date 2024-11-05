@@ -32,13 +32,26 @@ class Payment
         $statement->bindParam(15, $status, PDO::PARAM_INT);
         $statement->execute();
 
-    
+
         if (!$statement) {
             header("Location: ../../error.php?userID=$user_id&trkNo=$trkNo");
             exit;
         } else {
+            $this->updateOrderStatus($reference, $user_id, $trkNo);
             header("Location: ../../payment_success.php?userID=$user_id&trkNo=$trkNo");
             exit;
         }
-    } 
+    }
+
+    public function updateOrderStatus($reference, $user_id, $tracking_no)
+    {
+        $status = "confirmed";
+        $sql = "UPDATE orders SET payment_id=?, status=? WHERE user_id=? AND tracking_no=?";
+        $statement = $this->db->prepare($sql);
+        $statement->bindParam(1, $reference, PDO::PARAM_STR);
+        $statement->bindParam(2, $status, PDO::PARAM_STR);
+        $statement->bindParam(3, $user_id, PDO::PARAM_STR);
+        $statement->bindParam(4, $tracking_no, PDO::PARAM_STR);
+        $statement->execute();
+    }
 }

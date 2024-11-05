@@ -13,6 +13,7 @@ include_once 'components/header.php';
 include_once 'components/sidebar.php';
 
 $cart_items = $cart->getCartItems(session_id());
+$shippingLocations = $shipping->getShippingLocations();
 
 
 // echo "<pre>";
@@ -105,13 +106,29 @@ $cart_items = $cart->getCartItems(session_id());
                             <label for="country">Country / Region*</label>
                             <input id="country" name="country" type="text">
                         </div>
-                        <div class="single-input">
-                            <label for="street">Street Address*</label>
-                            <input id="address" name="address" type="text">
+                        <div class="half-input-wrapper">
+                            <div class="single-input">
+                                <label for="pickup_location">Ship Product(s) To*</label>
+                                <select id="pickup_location" name="pickup_location" class="form-select-lg w-100 mt-4">
+                                    <option selected disabled value="">Select your pickup location</option>
+                                    <?php if ($shippingLocations != []) : ?>
+                                        <?php foreach ($shippingLocations as $shippingLocation) : ?>
+                                            <option value="<?= $shippingLocation['id'] ?>"><?= $shippingLocation['location'] . " - N" . $shippingLocation['shipping_fee'] ?></option>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                </select>
+                            </div>
+
+                            <div class="single-input">
+                                <label for="city">Town / City*</label>
+                                <input id="city" name="city" type="text">
+
+                            </div>
                         </div>
                         <div class="single-input">
-                            <label for="city">Town / City*</label>
-                            <input id="city" name="city" type="text">
+                            <label for="city">Street Address</label>
+                            <input id="address" name="address" type="text">
+
                         </div>
                         <div class="single-input">
                             <label for="state">State*</label>
@@ -216,7 +233,10 @@ $cart_items = $cart->getCartItems(session_id());
                         <div class="left-area">
                             <span>Shipping</span>
                         </div>
-                        <span class="price">N3,000</span>
+                        <span class="price">N3,000 (Dynamic Rate)</span>
+                    </div>
+                    <div class="single-shop-list">
+                        <span class="price">Kindly Note: Shipping fee will be updated after order is placed</span>
                     </div>
                     <div class="single-shop-list">
                         <div class="left-area">

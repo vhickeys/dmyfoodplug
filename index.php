@@ -51,7 +51,7 @@ include_once 'components/sidebar.php';
                                 <div class="swiper-slide">
                                     <div class="banner-bg-image bg_image bg_one-banner  ptb--120 ptb_md--100 ptb_sm--180">
                                         <div class="banner-one-inner-content">
-                                            <span class="pre text-white">We bring market to your doorstep</span>
+                                            <span class="pre text-white">We bring the market to your doorstep</span>
                                             <h1 class="title">Welcome to Dmy Foodplug</h1>
                                             <a href="shop.php" class="rts-btn btn-primary radious-sm with-icon">
                                                 <div class="btn-text">
@@ -64,7 +64,7 @@ include_once 'components/sidebar.php';
                                                     <i class="fa-light fa-arrow-right"></i>
                                                 </div>
                                             </a>
-                                            <marquee behavior="" direction="" class="text-white mt-5">Fresh meat and frozen protein deliveries occur every Thursday | Export orders are shipped every Wednesday!</marquee>
+                                            <marquee behavior="" direction="" class="text-white mt-5">Fresh meat and frozen protein deliveries happen every Thursday | Export orders are shipped every Wednesday!</marquee>
                                         </div>
                                     </div>
                                 </div>
@@ -73,7 +73,7 @@ include_once 'components/sidebar.php';
                                 <div class="swiper-slide">
                                     <div class="banner-bg-image bg_image bg_one-banner two  ptb--120 ptb_md--100 ptb_sm--180">
                                         <div class="banner-one-inner-content">
-                                            <span class="pre text-white">We bring market to your doorstep</span>
+                                            <span class="pre text-white">We bring the market to your doorstep</span>
                                             <h1 class="title">Welcome to Dmy Foodplug</h1>
                                             <a href="shop.php" class="rts-btn btn-primary radious-sm with-icon">
                                                 <div class="btn-text">
@@ -394,7 +394,7 @@ include_once 'components/sidebar.php';
 <div class="rts-shorts-service-area rts-section-gap bg_primary">
     <div class="container">
         <div class="row text-center">
-            <h4 class="text-white">Click Join our meat sharing whatsapp group</h4>
+            <h4 class="text-white">Click to Join our meat sharing whatsapp group</h4>
             <div class="d-flex justify-content-center">
                 <a class="me-3" href="<?= $webSetting['whatsapp_group'] ?: 'javascript:void(0)' ?>"><i class="fa-brands fa-whatsapp text-white" style="font-size: 30px;"></i></a>
                 <a href="<?= $webSetting['whatsapp_group'] ?: 'javascript:void(0)' ?>"><i class="fa-brands fa-whatsapp text-white" style="font-size: 30px;"></i></a>

@@ -13,7 +13,7 @@ class Order
         $this->cart = $cart;
     }
 
-    public function placeOrder($user_id, $email, $first_name, $last_name, $country, $address, $city, $state, $zip_code, $phone, $order_notes, $payment_mode)
+    public function placeOrder($user_id, $email, $first_name, $last_name, $country, $address, $pickup_location, $city, $state, $zip_code, $phone, $order_notes, $payment_mode)
     {
         if (empty($user_id)) {
             echo 500;
@@ -24,7 +24,7 @@ class Order
 
             $total_price = $this->getTotalPrice();
 
-            $sql = "INSERT into orders (tracking_no, user_id, email, first_name, last_name, country, address, city, state, zip_code, phone, order_notes, total_price, payment_mode, payment_id, status) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            $sql = "INSERT into orders (tracking_no, user_id, email, first_name, last_name, country, address, pickup_location, city, state, zip_code, phone, order_notes, total_price, payment_mode, payment_id, status) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             $statement = $this->db->prepare($sql);
             $statement->bindParam(1, $tracking_no, PDO::PARAM_STR);
             $statement->bindParam(2, $user_id, PDO::PARAM_STR);
@@ -33,15 +33,16 @@ class Order
             $statement->bindParam(5, $last_name, PDO::PARAM_STR);
             $statement->bindParam(6, $country, PDO::PARAM_STR);
             $statement->bindParam(7, $address, PDO::PARAM_STR);
-            $statement->bindParam(8, $city, PDO::PARAM_STR);
-            $statement->bindParam(9, $state, PDO::PARAM_STR);
-            $statement->bindParam(10, $zip_code, PDO::PARAM_STR);
-            $statement->bindParam(11, $phone, PDO::PARAM_STR);
-            $statement->bindParam(12, $order_notes, PDO::PARAM_STR);
-            $statement->bindParam(13, $total_price, PDO::PARAM_INT);
-            $statement->bindParam(14, $payment_mode, PDO::PARAM_STR);
-            $statement->bindParam(15, $payment_id, PDO::PARAM_STR);
-            $statement->bindParam(16, $status, PDO::PARAM_STR);
+            $statement->bindParam(8, $pickup_location, PDO::PARAM_INT);
+            $statement->bindParam(9, $city, PDO::PARAM_STR);
+            $statement->bindParam(10, $state, PDO::PARAM_STR);
+            $statement->bindParam(11, $zip_code, PDO::PARAM_STR);
+            $statement->bindParam(12, $phone, PDO::PARAM_STR);
+            $statement->bindParam(13, $order_notes, PDO::PARAM_STR);
+            $statement->bindParam(14, $total_price, PDO::PARAM_INT);
+            $statement->bindParam(15, $payment_mode, PDO::PARAM_STR);
+            $statement->bindParam(16, $payment_id, PDO::PARAM_STR);
+            $statement->bindParam(17, $status, PDO::PARAM_STR);
 
             $statement->execute();
 
@@ -49,7 +50,7 @@ class Order
             // Add Order Items to table
             $this->addOrderItems($order_id);
 
-            $fullname = $first_name .' '. $last_name;
+            $fullname = $first_name . ' ' . $last_name;
             $date = date('d-M-Y');
 
             if ($statement) {
@@ -139,7 +140,7 @@ class Order
             $items_left_in_stock = $items_in_stock - $quantity;
 
             // Update Product Items in Stock
-    
+
             $items_in_stock_sql = "UPDATE products SET items_in_stock=? WHERE id=?";
             $items_in_stock_stmt = $this->db->prepare($items_in_stock_sql);
             $items_in_stock_stmt->bindParam(1, $items_left_in_stock, PDO::PARAM_STR);
@@ -150,10 +151,26 @@ class Order
 
     public function checkUserOrderExists($user_id, $tracking_no)
     {
-        $sql = "SELECT * FROM orders WHERE user_id=? AND tracking_no=?";
+        $status = "pending";
+        $sql = "SELECT * FROM orders WHERE user_id=? AND tracking_no=? AND status=?";
         $statement = $this->db->prepare($sql);
         $statement->bindParam(1, $user_id, PDO::PARAM_STR);
         $statement->bindParam(2, $tracking_no, PDO::PARAM_STR);
+        $statement->bindParam(3, $status, PDO::PARAM_STR);
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+        return $result ?: [];
+    }
+
+    public function checkOrderSuccessExists($user_id, $tracking_no)
+    {
+        $status = "confirmed";
+        $sql = "SELECT * FROM orders WHERE user_id=? AND tracking_no=? AND status=?";
+        $statement = $this->db->prepare($sql);
+        $statement->bindParam(1, $user_id, PDO::PARAM_STR);
+        $statement->bindParam(2, $tracking_no, PDO::PARAM_STR);
+        $statement->bindParam(3, $status, PDO::PARAM_STR);
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_ASSOC);
 
@@ -181,11 +198,23 @@ class Order
         return $result ?: [];
     }
 
-    public function getOrder($user_id, $tracking_no) {
+    public function getOrder($user_id, $tracking_no)
+    {
         $sql = "SELECT * FROM orders WHERE user_id=? AND tracking_no=?";
         $statement = $this->db->prepare($sql);
         $statement->bindParam(1, $user_id, PDO::PARAM_STR);
         $statement->bindParam(2, $tracking_no, PDO::PARAM_STR);
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+        return $result ?: [];
+    }
+
+    public function getShippingDetails($shipping_id)
+    {
+        $sql = "SELECT * FROM shippings WHERE id=? LIMIT 1";
+        $statement = $this->db->prepare($sql);
+        $statement->bindParam(1, $shipping_id, PDO::PARAM_INT);
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_ASSOC);
 

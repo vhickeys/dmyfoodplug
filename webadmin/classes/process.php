@@ -11,6 +11,8 @@ if (isset($_GET['action'])) {
                 $role = $_POST['role'];
 
                 $user->registerUser($adminFname, $adminEmail, $adminPassword, $role);
+            } else {
+                echo "<script>window.location.href='../../index.php'</script>";
             }
             break;
 
@@ -20,6 +22,8 @@ if (isset($_GET['action'])) {
                 $adminPassword = $_POST['adminPassword'];
 
                 $user->loginUser($adminEmail, $adminPassword);
+            } else {
+                echo "<script>window.location.href='../../index.php'</script>";
             }
             break;
 
@@ -29,6 +33,8 @@ if (isset($_GET['action'])) {
                 $new_password = $_POST['new_password'];
 
                 $user->changePassword($userId, $new_password);
+            } else {
+                echo "<script>window.location.href='../../index.php'</script>";
             }
             break;
 
@@ -42,6 +48,8 @@ if (isset($_GET['action'])) {
                 $message = $_POST['message'];
 
                 $contact->contactSubmit($firstname, $lastname, $email, $phone, $subject, $message);
+            } else {
+                echo "<script>window.location.href='../../index.php'</script>";
             }
             break;
 
@@ -51,6 +59,8 @@ if (isset($_GET['action'])) {
                 $adminPassword = $_POST['adminPassword'];
 
                 $user->loginAdmin($adminEmail, $adminPassword);
+            } else {
+                echo "<script>window.location.href='../../index.php'</script>";
             }
             break;
 
@@ -58,6 +68,8 @@ if (isset($_GET['action'])) {
             if (isset($_POST)) {
 
                 $user->logoutUser();
+            } else {
+                echo "<script>window.location.href='../../index.php'</script>";
             }
             break;
 
@@ -79,6 +91,8 @@ if (isset($_GET['action'])) {
                 $status = $_POST['status'] == true ? '1' : '0';
 
                 $category->createCategory($name, $slug, $caption, $description, $image, $meta_title, $meta_keywords, $meta_description, $author, $status);
+            } else {
+                echo "<script>window.location.href='../../index.php'</script>";
             }
             break;
 
@@ -101,6 +115,8 @@ if (isset($_GET['action'])) {
                 $status = $_POST['status'] == true ? '1' : '0';
 
                 $category->editCategory($category_id, $name, $slug, $caption, $description, $image, $old_image, $meta_title, $meta_keywords, $meta_description, $author, $status);
+            } else {
+                echo "<script>window.location.href='../../index.php'</script>";
             }
             break;
 
@@ -130,6 +146,8 @@ if (isset($_GET['action'])) {
                 $status = $_POST['status'] == true ? '1' : '0';
 
                 $settings->modifySettings($discount_offer, $about, $phone, $email, $office_address, $error_message, $payment_notice, $facebook, $instagram, $twitter, $linkedIn, $youtube, $whatsapp, $whatsapp_group, $logo, $old_image, $status, "1");
+            } else {
+                echo "<script>window.location.href='../../index.php'</script>";
             }
             break;
 
@@ -160,6 +178,8 @@ if (isset($_GET['action'])) {
                 $status = $_POST['status'] == true ? '1' : '0';
 
                 $product->createProduct($category, $name, $slug, $caption, $description, $image, $cost_price, $selling_price, $price_range, $SKU, $items_in_stock, $meta_title, $meta_keywords, $meta_description, $author, $soldout, $trending, $status);
+            } else {
+                echo "<script>window.location.href='../../index.php'</script>";
             }
             break;
 
@@ -175,6 +195,8 @@ if (isset($_GET['action'])) {
 
                 $product = new Product($database);
                 $product->createProductWeight($product_id, $weight, $new_price, $other_info, $status);
+            } else {
+                echo "<script>window.location.href='../../index.php'</script>";
             }
             break;
 
@@ -190,6 +212,8 @@ if (isset($_GET['action'])) {
 
                 $product = new Product($database);
                 $product->createProductSize($product_id, $size, $new_price, $other_info, $status);
+            } else {
+                echo "<script>window.location.href='../../index.php'</script>";
             }
             break;
 
@@ -205,6 +229,8 @@ if (isset($_GET['action'])) {
 
                 $product = new Product($database);
                 $product->createProductSlot($product_id, $slot, $new_price, $other_info, $status);
+            } else {
+                echo "<script>window.location.href='../../index.php'</script>";
             }
             break;
 
@@ -237,6 +263,8 @@ if (isset($_GET['action'])) {
                 $status = $_POST['status'] == true ? '1' : '0';
 
                 $product->editProduct($product_id, $category, $name, $slug, $caption, $description, $image, $old_image, $cost_price, $selling_price, $price_range, $SKU, $items_in_stock, $meta_title, $meta_keywords, $meta_description, $author, $soldout, $trending, $status);
+            } else {
+                echo "<script>window.location.href='../../index.php'</script>";
             }
             break;
 
@@ -298,6 +326,7 @@ if (isset($_GET['action'])) {
                 $last_name = $_POST['last_name'];
                 $country = $_POST['country'];
                 $address = $_POST['address'];
+                $pickup_location = $_POST['pickup_location'];
                 $city = $_POST['city'];
                 $state = $_POST['state'];
                 $zip_code = $_POST['zip_code'];
@@ -305,11 +334,24 @@ if (isset($_GET['action'])) {
                 $order_notes = $_POST['order_notes'];
                 $payment_mode = $_POST['payment_mode'];
 
-                $order->placeOrder($user_id, $email, $first_name, $last_name, $country, $address, $city, $state, $zip_code, $phone, $order_notes, $payment_mode);
-                
+                $order->placeOrder($user_id, $email, $first_name, $last_name, $country, $address, $pickup_location, $city, $state, $zip_code, $phone, $order_notes, $payment_mode);
             } else {
                 echo 500;
             }
+            break;
+
+        case 'create-shipping':
+            if (isset($_POST['submit-shipping'])) {
+                $location = $_POST['location'];
+                $shipping_fee = $_POST['shipping_fee'];
+                $other_info = $_POST['other_info'];
+                $status = $_POST['status'] == true ? '1' : '0';
+
+                $shipping->createNewShippingAdd($location, $shipping_fee, $other_info, $status);
+            } else {
+                echo "<script>window.location.href='../../index.php'</script>";
+            }
+
             break;
 
         case 'getParticipants':
@@ -317,6 +359,8 @@ if (isset($_GET['action'])) {
                 $participantID = $_POST['participantID'];
                 // $participant = $participant->getParticipant('registration', $participantID);
                 echo json_encode($participant);
+            } else {
+                echo "<script>window.location.href='../../index.php'</script>";
             }
             break;
 
@@ -326,6 +370,8 @@ if (isset($_GET['action'])) {
                 $proof = $_FILES['proof'];
 
                 $transaction->uploadPaymentProof($user_id, $proof);
+            } else {
+                echo "<script>window.location.href='../../index.php'</script>";
             }
             break;
 
@@ -345,6 +391,8 @@ if (isset($_GET['action'])) {
                     // Approve Payment Status i.e Set Status to 1
                     $transaction->updatePaymentStatus($payment_id, $user_id, "1");
                 }
+            } else {
+                echo "<script>window.location.href='../../index.php'</script>";
             }
             break;
 
@@ -352,6 +400,8 @@ if (isset($_GET['action'])) {
             if (isset($_POST['delete-agenda'])) {
                 $agenda_id = $_POST['agendaDeleteModalId'];
                 // $agenda->deleteAgenda($agenda_id);
+            } else {
+                echo "<script>window.location.href='../../index.php'</script>";
             }
             break;
 
@@ -359,6 +409,8 @@ if (isset($_GET['action'])) {
             if (isset($_POST['delete-event'])) {
                 $event_Id = $_POST['eventDeleteModalId'];
                 // $event->deleteEvent("events", $event_Id, "Event", "view-events.php");
+            } else {
+                echo "<script>window.location.href='../../index.php'</script>";
             }
             break;
 
@@ -366,6 +418,8 @@ if (isset($_GET['action'])) {
             if (isset($_POST['delete-user'])) {
                 $user_Id = $_POST['userDeleteModalId'];
                 $record->deleteRecord("users", $user_Id, "User", "view-users.php");
+            } else {
+                echo "<script>window.location.href='../../index.php'</script>";
             }
             break;
 
@@ -374,6 +428,8 @@ if (isset($_GET['action'])) {
                 $product_id = $_POST['product_id'];
                 $deleteProdWeightId = $_POST['deleteProdWeightId'];
                 $record->deleteRecord("product_weights", $deleteProdWeightId, "Product Weight", "product-details.php?pId=$product_id");
+            } else {
+                echo "<script>window.location.href='../../index.php'</script>";
             }
             break;
 
@@ -382,6 +438,8 @@ if (isset($_GET['action'])) {
                 $product_id = $_POST['product_id'];
                 $deleteProdSizeId = $_POST['deleteProdSizeId'];
                 $record->deleteRecord("product_sizes", $deleteProdSizeId, "Product Size", "product-details.php?pId=$product_id");
+            } else {
+                echo "<script>window.location.href='../../index.php'</script>";
             }
             break;
 
@@ -390,6 +448,8 @@ if (isset($_GET['action'])) {
                 $product_id = $_POST['product_id'];
                 $deleteProdSlotId = $_POST['deleteProdSlotId'];
                 $record->deleteRecord("product_slots", $deleteProdSlotId, "Product Slot", "product-details.php?pId=$product_id");
+            } else {
+                echo "<script>window.location.href='../../index.php'</script>";
             }
             break;
 
@@ -398,6 +458,8 @@ if (isset($_GET['action'])) {
                 $user_Id = $_POST['userId'];
                 $user_role = $_POST['user_role'];
                 $user->updateUserRole($user_role, $user_Id);
+            } else {
+                echo "<script>window.location.href='../../index.php'</script>";
             }
             break;
 
@@ -408,6 +470,8 @@ if (isset($_GET['action'])) {
 
                 $userAccess == 1 ? $userAccess = 0 : $userAccess = 1;
                 $user->userAccess($userAccess, $user_Id);
+            } else {
+                echo "<script>window.location.href='../../index.php'</script>";
             }
             break;
 

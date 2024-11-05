@@ -750,6 +750,7 @@ $(document).ready(function () {
     var last_name = $('#last_name').val();
     var country = $('#country').val();
     var address = $('#address').val();
+    var pickup_location = $('#pickup_location').val();
     var city = $('#city').val();
     var state = $('#state').val();
     var zip_code = $('#zip_code').val();
@@ -761,9 +762,11 @@ $(document).ready(function () {
       alertify.error('This field is required!');
     } else if (!validateEmail(email)) {
       alertify.error('This email is invalid!');
+    } else if (!pickup_location) {
+      alertify.error('Please select a pickup location!');
     } else if (!isTermsChecked) {
       alertify.error('You must agree to the terms and conditions!');
-    }  else {
+    } else {
 
       $('#buttonSpinner').removeClass('d-none');
       $('#placeOrderButton').attr('disabled', true);
@@ -831,8 +834,8 @@ function payWithPaystack(e) {
     let tracking_no = document.getElementById("tracking_no").value;
 
     let handler = PaystackPop.setup({
-        // key: 'pk_test_3c28b8fbf33b23082322b5dd95f3886bb8d6993e', // Replace with your public key or Uncomment this for testing
-        key: 'pk_live_ba4a976b82469494b8b725d57c7a38e2818f1b8f', // Replace with your public key
+        key: 'pk_test_3c28b8fbf33b23082322b5dd95f3886bb8d6993e', // Replace with your public key or Uncomment this for testing
+        // key: 'pk_live_ba4a976b82469494b8b725d57c7a38e2818f1b8f', // Replace with your public key
         user_id: user_id,
         order_id: order_id,
         tracking_no: tracking_no,

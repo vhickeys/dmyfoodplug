@@ -142,8 +142,7 @@ $cart_items = $cart->getCartItems(session_id());
                                 </li> -->
 
                                 <li>
-                                    <input type="radio" id="s-option" name="selector" checked>
-                                    <label for="s-option">Flat Rate: N3,000</label>
+                                    <label for="s-option">Dynamic Rate: N3,000 (Price may differ with location)</label>
 
                                     <div class="check">
                                         <div class="inside"></div>

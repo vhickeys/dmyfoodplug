@@ -2,7 +2,7 @@
 $page_title = 'Payment Success';
 include_once 'components/head.php';
 
-$userOrderExists = $order->checkUserOrderExists($_GET['userID'] ?? '', $_GET['trkNo']);
+$userOrderExists = $order->checkOrderSuccessExists($_GET['userID'] ?? '', $_GET['trkNo']);
 
 if (!isset($_GET['userID']) || empty($_GET['userID']) || !isset($_GET['trkNo']) || empty($_GET['trkNo']) ||  $userOrderExists == []) {
     echo "<script>window.history.back()</script>";

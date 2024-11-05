@@ -6,7 +6,7 @@
                     <div class="col-lg-12">
                         <div class="bwtween-area-header-top">
                             <div class="discount-area">
-                                <p class="disc">Fresh meat and frozen protein deliveries occur every Thursday. </p>
+                                <p class="disc">Fresh meat and frozen protein deliveries happen every Thursday | Export orders are shipped every Wednesday! </p>
                             </div>
                             <div class="contact-number-area">
                                 <p>Need help? Call Us:
