@@ -28,6 +28,7 @@ require 'Cart.php';
 require 'Order.php';
 require 'Payment.php';
 require 'Shipping.php';
+require 'Coupon.php';
 require 'Settings.php';
 require 'Contact.php';
 require 'email.php';
@@ -49,6 +50,8 @@ $order = new Order($database, $cart);
 $payment = new Payment($database);
 
 $shipping = new Shipping($database);
+
+$coupon = new Coupon($database);
 
 $settings = new Settings($database);
 

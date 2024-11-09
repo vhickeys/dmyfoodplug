@@ -106,30 +106,30 @@ $shippingLocations = $shipping->getShippingLocations();
                             <label for="country">Country / Region*</label>
                             <input id="country" name="country" type="text">
                         </div>
-                        <div class="half-input-wrapper">
-                            <div class="single-input">
-                                <label for="pickup_location">Ship Product(s) To*</label>
-                                <select id="pickup_location" name="pickup_location" class="form-select-lg w-100 mt-4">
-                                    <option selected disabled value="">Select your pickup location</option>
-                                    <?php if ($shippingLocations != []) : ?>
-                                        <?php foreach ($shippingLocations as $shippingLocation) : ?>
-                                            <option value="<?= $shippingLocation['id'] ?>"><?= $shippingLocation['location'] . " - N" . $shippingLocation['shipping_fee'] ?></option>
-                                        <?php endforeach; ?>
-                                    <?php endif; ?>
-                                </select>
-                            </div>
 
-                            <div class="single-input">
-                                <label for="city">Town / City*</label>
-                                <input id="city" name="city" type="text">
-
-                            </div>
-                        </div>
                         <div class="single-input">
-                            <label for="city">Street Address</label>
-                            <input id="address" name="address" type="text">
+                            <label for="pickup_location">Ship Product(s) To*</label>
+                            <select id="pickup_location" name="pickup_location" class="form-select-lg w-100 my-5">
+                                <option selected disabled value="">Select your pickup location</option>
+                                <?php if ($shippingLocations != []) : ?>
+                                    <?php foreach ($shippingLocations as $shippingLocation) : ?>
+                                        <option value="<?= $shippingLocation['id'] ?>"><?= $shippingLocation['location'] . " - N" . $shippingLocation['shipping_fee'] ?></option>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </select>
+                        </div>
+
+                        <div class="single-input">
+                            <label for="city">Town / City*</label>
+                            <input id="city" name="city" type="text">
 
                         </div>
+
+                        <div class="single-input">
+                            <label for="city">Street Address*</label>
+                            <input id="address" name="address" type="text">
+                        </div>
+
                         <div class="single-input">
                             <label for="state">State*</label>
                             <input id="state" name="state" type="text">

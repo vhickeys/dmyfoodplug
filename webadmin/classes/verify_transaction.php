@@ -27,8 +27,8 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => "GET",
     CURLOPT_HTTPHEADER => array(
-        "Authorization: Bearer sk_test_3a66810de4128b43553402ce0b6f589cacb11da2", // replace with your secret key key or Uncomment this for testing
-        // "Authorization: Bearer sk_live_ca6f61dfb513be36c8e13e1be06bffcca29d1251", // replace with your secret key
+        // "Authorization: Bearer sk_test_3a66810de4128b43553402ce0b6f589cacb11da2", // replace with your secret key key or Uncomment this for testing
+        "Authorization: Bearer sk_live_ca6f61dfb513be36c8e13e1be06bffcca29d1251", // replace with your secret key
         "Cache-Control: no-cache",
     ),
 ));

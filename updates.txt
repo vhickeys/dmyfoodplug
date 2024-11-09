@@ -1,2 +1,1 @@
-Added new database called "shippings"
-adding column of "pickup_location"
+Added new database called "Coupons"

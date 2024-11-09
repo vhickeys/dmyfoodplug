@@ -4,13 +4,13 @@ require('classes/functions.php');
 
 authCheck();
 
-$title = "View Orders";
+$title = "View Shippings";
 include_once('components/head.php');
 include_once('components/nav-header.php');
 include_once('components/header.php');
 include_once('components/sidebar.php');
 
-$orders = $order->getAllOrders();
+$coupons = $coupon->getCoupons();
 
 ?>
 
@@ -23,7 +23,7 @@ $orders = $order->getAllOrders();
     <div class="page-titles">
         <ol class="breadcrumb">
             <li>
-                <h5 class="bc-title">View All Orders</h5>
+                <h5 class="bc-title">View All Coupon Codes</h5>
             </li>
             <li class="breadcrumb-item"><a href="index.php">
                     <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -33,17 +33,40 @@ $orders = $order->getAllOrders();
                     Home </a>
             </li>
         </ol>
-        <!-- <a class="text-primary fs-13" href=javascript:void(0)">+ Add Shipping Address</a> -->
+        <a class="text-primary fs-13" href="create-coupon.php">+ Add coupons</a>
     </div>
     <div class="container-fluid">
         <div class="row">
 
             <?php include_once 'components/alert_messages.php' ?>
 
+            <!--Delete Product Weight Modal -->
+            <form method="post" action="classes/process.php?action=delete-coupon">
+                <div class="modal fade" id="deleteCouponModal" tabindex="-1" aria-labelledby="deleteCouponModal" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="">Delete This Coupon Code?</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <input type="hidden" id="deleteCouponId" name="deleteCouponId">
+                                <h4>Are you sure you want to delete this Coupon Code?</h4>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" name="delete-coupon" class="btn btn-danger">Delete
+                                    Coupon Code</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
             <div class="col-xl-12 col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">View All Orders</h4>
+                        <h4 class="card-title">View All Coupon Codes</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -51,11 +74,9 @@ $orders = $order->getAllOrders();
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Fullname</th>
-                                        <th>Tracking Number</th>
-                                        <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>Payment Status</th>
+                                        <th>Coupon Code</th>
+                                        <th>Discount</th>
+                                        <th>Status</th>
                                         <th>Date Created</th>
                                         <th>Actions</th>
                                     </tr>
@@ -63,31 +84,29 @@ $orders = $order->getAllOrders();
                                 <tbody>
                                     <?php
                                     $id = 1;
-                                    if ($orders == []) {
+                                    if ($coupons == []) {
                                     } else {
-                                        foreach ($orders as $order) {
+                                        foreach ($coupons as $coupon) {
                                     ?>
 
                                             <tr>
                                                 <td><?= $id ?></td>
-                                                <td><?= $order['first_name'] . " " . $order['last_name'] ?></td>
-                                                <td><?= $order['tracking_no'] ?></td>
-                                                <td><?= $order['email'] ?></td>
-                                                <td><?= $order['phone'] ?></td>
+                                                <td><?= $coupon['code'] ?></td>
+                                                <td><?= $coupon['discount'] ?>%</td>
 
                                                 <td>
-                                                    <?php if ($order['status'] == 'pending') : ?>
-                                                        <span class="text-danger">Pending!</span>
-                                                    <?php elseif ($order['status'] == 'confirmed') : ?>
-                                                        <span class="text-success">Payment Confirmed!</span>
+                                                    <?php if ($coupon['status'] == '1') : ?>
+                                                        <span class="text-danger">Deactivated!</span>
+                                                    <?php elseif ($coupon['status'] == '0') : ?>
+                                                        <span class="text-success">Active!</span>
                                                     <?php endif; ?>
                                                 </td>
 
-                                                <td><?php echo date("H:i:s d-M-Y", strtotime($order['date'])) ?></td>
+                                                <td><?php echo date("H:i:s d-M-Y", strtotime($coupon['date'])) ?></td>
                                                 <td>
                                                     <div class="d-flex">
                                                         <?php if ($_SESSION['user_data']['role'] == "2") : ?>
-                                                            <a href="order-details.php?ordId=<?= $order['id'] ?>" class="btn btn-success shadow btn-xs sharp"><i class="fa fa-eye"></i></a>
+                                                            <button value="<?= $coupon['id'] ?>" class="btn btn-danger shadow btn-xs sharp deleteCouponBtn"><i class="fa fa-trash"></i></button>
                                                         <?php endif; ?>
 
                                                     </div>

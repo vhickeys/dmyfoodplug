@@ -256,14 +256,17 @@ $(document).ready(function () {
   // Change User Role
   confirmDelete("change-role", "changeUserRoleModal", "userId");
 
-  // Change Product Weight
+  // Delete Product Weight
   confirmDelete("deleteProdWeight", "deleteProdWeightModal", "deleteProdWeightId");
 
-  // Change Product Size
+  // Delete Product Size
   confirmDelete("deleteProdSize", "deleteProdSizeModal", "deleteProdSizeId");
 
-  // Change Product Size
+  // Delete Product Slot
   confirmDelete("deleteProdSlot", "deleteProdSlotModal", "deleteProdSlotId");
+
+  // Delete Coupon Code
+  confirmDelete("deleteCouponBtn", "deleteCouponModal", "deleteCouponId");
 
 });
 

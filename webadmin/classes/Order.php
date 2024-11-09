@@ -198,6 +198,35 @@ class Order
         return $result ?: [];
     }
 
+    public function getOrderItemsAdmin($order_id)
+    {
+        $sql = "SELECT oItems.*,
+        p.name AS product_name,
+        p.image AS product_image,
+        p.items_in_stock AS items_in_stock
+        FROM order_items oItems
+        INNER JOIN products p ON oItems.product_id = p.id
+        WHERE oItems.order_id = ?
+        ORDER BY oItems.id DESC";
+        $statement = $this->db->prepare($sql);
+        $statement->bindParam(1, $order_id, PDO::PARAM_INT);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result ?: [];
+    }
+
+    public function getOrderAdmin($order_id)
+    {
+        $sql = "SELECT * FROM orders WHERE id=?";
+        $statement = $this->db->prepare($sql);
+        $statement->bindParam(1, $order_id, PDO::PARAM_INT);
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+        return $result ?: [];
+    }
+
     public function getOrder($user_id, $tracking_no)
     {
         $sql = "SELECT * FROM orders WHERE user_id=? AND tracking_no=?";
@@ -206,6 +235,16 @@ class Order
         $statement->bindParam(2, $tracking_no, PDO::PARAM_STR);
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+        return $result ?: [];
+    }
+
+    public function getAllOrders()
+    {
+        $sql = "SELECT * FROM orders ORDER BY date DESC";
+        $statement = $this->db->prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         return $result ?: [];
     }
@@ -219,5 +258,16 @@ class Order
         $result = $statement->fetch(PDO::FETCH_ASSOC);
 
         return $result ?: [];
+    }
+
+    public function countOrderItems($order_id)
+    {
+        $sql = "SELECT * FROM order_items WHERE order_id=?";
+        $statement = $this->db->prepare($sql);
+        $statement->bindParam(1, $order_id, PDO::PARAM_INT);
+        $statement->execute();
+        $result = $statement->rowCount();
+
+        return $result ?: 0;
     }
 }

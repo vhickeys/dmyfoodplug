@@ -4,7 +4,7 @@ require('classes/functions.php');
 
 authCheck();
 
-$title = "Create Shipping Address";
+$title = "Create Coupon Code";
 include_once('components/head.php');
 include_once('components/nav-header.php');
 include_once('components/header.php');
@@ -22,7 +22,7 @@ include_once('components/sidebar.php');
     <div class="page-titles">
         <ol class="breadcrumb">
             <li>
-                <h5 class="bc-title">Shipping Addresses</h5>
+                <h5 class="bc-title">Coupon Codes</h5>
             </li>
             <li class="breadcrumb-item"><a href="index.php">
                     <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -32,7 +32,7 @@ include_once('components/sidebar.php');
                     Home </a>
             </li>
         </ol>
-        <a class="text-primary fs-13" href="view-shippings.php">+ View All Shippings</a>
+        <a class="text-primary fs-13" href="view-coupons.php">+ View All Coupons</a>
 
     </div>
     <div class="container-fluid">
@@ -43,39 +43,39 @@ include_once('components/sidebar.php');
             <div class="col-xl-12 col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Creates New Shipping</h4>
+                        <h4 class="card-title">Creates New Coupon Code</h4>
                     </div>
                     <div class="card-body">
                         <div class="basic-form">
-                            <form action="classes/process.php?action=create-shipping" method="POST" enctype="multipart/form-data">
+                            <form action="classes/process.php?action=create-coupon" method="POST" enctype="multipart/form-data">
                                 <div class="mb-3 row">
-                                    <label class="col-sm-3 col-form-label">Shipping Location:</label>
+                                    <label class="col-sm-3 col-form-label">Coupon Code:</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="location" class="form-control" placeholder="Enter Name of Location" required>
+                                        <input type="text" name="code" class="form-control" placeholder="Enter Coupon Code" required>
                                     </div>
                                 </div>
 
                                 <div class="mb-3 row">
-                                    <label class="col-sm-3 col-form-label">Shipping Fee:</label>
+                                    <label class="col-sm-3 col-form-label">Discount:</label>
                                     <div class="col-sm-9">
-                                        <input type="number" name="shipping_fee" class="form-control" placeholder="Enter Shipping Fee" required>
+                                        <input type="number" name="discount" class="form-control" placeholder="Enter Discount Amount(In percentage e.g 5%)" required>
                                     </div>
                                 </div>
 
                                 <div class="mb-3 row">
-                                    <label class="col-sm-3 col-form-label">Any other info about shipping address:</label>
+                                    <label class="col-sm-3 col-form-label">Any other info about coupon:</label>
                                     <div class="col-sm-9">
-                                        <textarea name="other_info" class="form-control" placeholder="Enter Any Other Shipping Information (Optional)"></textarea>
+                                        <textarea name="other_info" class="form-control" placeholder="Enter Any Other Coupon Information (Optional)"></textarea>
                                     </div>
                                 </div>
 
                                 <div class="mb-3 row">
-                                    <div class="col-sm-3">Status:</div>
+                                    <div class="col-sm-3">De-activate:</div>
                                     <div class="col-sm-9">
                                         <div class="form-check">
                                             <input class="form-check-input" name="status" type="checkbox">
                                             <label class="form-check-label text-danger">
-                                                Clicking this will hide the shipping details from the customer!
+                                                Clicking this will deactivate this coupon and make it not usable!
                                             </label>
                                         </div>
                                     </div>
@@ -84,8 +84,7 @@ include_once('components/sidebar.php');
                                 <div class="my-3 row justify-content-center">
                                     <div class="col-sm-3"></div>
                                     <div class="col-sm-9">
-                                        <button type="submit" name="submit-shipping" class="btn btn-primary w-100">Create a New
-                                            Shipping Address</button>
+                                        <button type="submit" name="submit-coupon" class="btn btn-primary w-100">Create Coupon Code</button>
                                     </div>
                                 </div>
 

@@ -15,7 +15,7 @@ $order_details = $order->getOrderDetails($_GET['ord'], $_GET['trkNo']);
 $order_info = $order->getOrder($_GET['ord'], $_GET['trkNo']);
 
 $shipping_id = $order_info['pickup_location'];
-$shipping_details = $order->getShippingDetails($shipping_id);
+$shipping_details = $shipping->getShippingDetails($shipping_id);
 $shipping_location = $shipping_details['location'];
 $shipping_fee = $shipping_details['shipping_fee'];
 

@@ -354,6 +354,44 @@ if (isset($_GET['action'])) {
 
             break;
 
+        case 'edit-shipping':
+            if (isset($_POST['edit-shipping'])) {
+                $shipping_id = $_POST['shipping_id'];
+                $location = $_POST['location'];
+                $shipping_fee = $_POST['shipping_fee'];
+                $other_info = $_POST['other_info'];
+                $status = $_POST['status'] == true ? '1' : '0';
+
+                $shipping->editShippingAdd($shipping_id, $location, $shipping_fee, $other_info, $status);
+            } else {
+                echo "<script>window.location.href='../../index.php'</script>";
+            }
+
+            break;
+
+        case 'create-coupon':
+            if (isset($_POST['submit-coupon'])) {
+                $code = $_POST['code'];
+                $discount = $_POST['discount'];
+                $other_info = $_POST['other_info'];
+                $status = $_POST['status'] == true ? '1' : '0';
+
+                $coupon->createCoupon($code, $discount, $other_info, $status);
+            } else {
+                echo "<script>window.location.href='../../index.php'</script>";
+            }
+
+            break;
+
+        case 'delete-coupon':
+            if (isset($_POST['delete-coupon'])) {
+                $deleteCouponId = $_POST['deleteCouponId'];
+                $record->deleteRecord("coupons", $deleteCouponId, "Coupon Code", "view-coupons.php");
+            } else {
+                echo "<script>window.location.href='../../index.php'</script>";
+            }
+            break;
+
         case 'getParticipants':
             if (isset($_POST)) {
                 $participantID = $_POST['participantID'];

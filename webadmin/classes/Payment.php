@@ -54,4 +54,27 @@ class Payment
         $statement->bindParam(4, $tracking_no, PDO::PARAM_STR);
         $statement->execute();
     }
+
+
+    public function getPayments()
+    {
+        $sql = "SELECT * FROM payments ORDER BY date DESC";
+        $statement = $this->db->prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result ?: [];
+    }
+
+    public function getPurchaseCount($user_id, $tracking_no)
+    {
+        $sql = "SELECT * FROM payments WHERE user_id=? AND tracking_no=?";
+        $statement = $this->db->prepare($sql);
+        $statement->bindParam(1, $user_id, PDO::PARAM_STR);
+        $statement->bindParam(2, $tracking_no, PDO::PARAM_STR);
+        $statement->execute();
+        $result = $statement->rowCount();
+
+        return $result ?: 0;
+    }
 }

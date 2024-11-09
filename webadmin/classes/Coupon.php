@@ -1,6 +1,6 @@
 <?php
 
-class Shipping
+class Coupon
 {
     private $db;
 
@@ -9,33 +9,33 @@ class Shipping
         $this->db = $database->getConnection();
     }
 
-    public function createNewShippingAdd($location, $shipping_fee, $other_info, $status)
+    public function createCoupon($code, $discount, $other_info, $status)
     {
-        if (empty($location) || empty($shipping_fee)) {
-            $_SESSION['errorMessage'] = "Shipping location and fees cannot be empty!";
-            header("location: ../create-shipping.php");
+        if (empty($code) || empty($discount)) {
+            $_SESSION['errorMessage'] = "Coupon code and discount cannot be empty!";
+            header("location: ../create-coupon.php");
             exit(0);
         } else {
-            if ($this->checkShippingAddExists($location) > 0) {
+            if ($this->checkCouponExists($code) > 0) {
                 $_SESSION['errorMessage'] = "Shipping Location Already Exists!";
-                header("location: ../create-shipping.php");
+                header("location: ../create-coupon.php");
                 exit(0);
             } else {
-                $sql = "INSERT into shippings (location, shipping_fee, other_info, status) values(?,?,?,?)";
+                $sql = "INSERT into coupons (code, discount, other_info, status) values(?,?,?,?)";
                 $statement = $this->db->prepare($sql);
-                $statement->bindParam(1, $location, PDO::PARAM_STR);
-                $statement->bindParam(2, $shipping_fee, PDO::PARAM_INT);
+                $statement->bindParam(1, $code, PDO::PARAM_STR);
+                $statement->bindParam(2, $discount, PDO::PARAM_INT);
                 $statement->bindParam(3, $other_info, PDO::PARAM_STR);
                 $statement->bindParam(4, $status, PDO::PARAM_INT);
                 $statement->execute();
 
                 if ($statement) {
                     $_SESSION['successMessage'] = "Shipping location created successfully";
-                    header("location: ../view-shippings.php");
+                    header("location: ../view-coupons.php");
                     exit(0);
                 } else {
                     $_SESSION['errorMessage'] = "Something went wrong!";
-                    header("location: ../create-shippings.php");
+                    header("location: ../create-coupon.php");
                     exit(0);
                 }
             }
@@ -70,56 +70,23 @@ class Shipping
         }
     }
 
-    public function checkShippingAddExists($location)
+    public function checkCouponExists($code)
     {
-        $sql = "SELECT * FROM shippings WHERE location=?";
+        $sql = "SELECT * FROM coupons WHERE code=?";
         $statement = $this->db->prepare($sql);
-        $statement->bindParam(1, $location, PDO::PARAM_STR);
+        $statement->bindParam(1, $code, PDO::PARAM_STR);
         $statement->execute();
         $result = $statement->rowCount();
 
         return $result ?: 0;
     }
 
-    public function getShippingLocations()
+    public function getCoupons()
     {
-        $status = 0;
-        $sql = "SELECT * FROM shippings WHERE status=?";
-        $statement = $this->db->prepare($sql);
-        $statement->bindParam(1, $status, PDO::PARAM_STR);
-        $statement->execute();
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-        return $result ?: [];
-    }
-
-    public function getShippingDetails($shipping_id)
-    {
-        $sql = "SELECT * FROM shippings WHERE id=? LIMIT 1";
-        $statement = $this->db->prepare($sql);
-        $statement->bindParam(1, $shipping_id, PDO::PARAM_INT);
-        $statement->execute();
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-
-        return $result ?: [];
-    }
-    public function getAllPickupLoc()
-    {
-        $sql = "SELECT * FROM shippings ORDER BY date DESC";
+        $sql = "SELECT * FROM coupons ORDER BY id DESC";
         $statement = $this->db->prepare($sql);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-        return $result ?: [];
-    }
-
-    public function getPickUpLocById($pickup_id)
-    {
-        $sql = "SELECT * FROM shippings WHERE id=?";
-        $statement = $this->db->prepare($sql);
-        $statement->bindParam(1, $pickup_id, PDO::PARAM_INT);
-        $statement->execute();
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
 
         return $result ?: [];
     }

@@ -4,13 +4,13 @@ require('classes/functions.php');
 
 authCheck();
 
-$title = "View Payments";
+$title = "View Shippings";
 include_once('components/head.php');
 include_once('components/nav-header.php');
 include_once('components/header.php');
 include_once('components/sidebar.php');
 
-$payments = $payment->getPayments();
+$pickup_locations = $shipping->getAllPickupLoc();
 
 ?>
 
@@ -23,7 +23,7 @@ $payments = $payment->getPayments();
     <div class="page-titles">
         <ol class="breadcrumb">
             <li>
-                <h5 class="bc-title">View All Payments Details</h5>
+                <h5 class="bc-title">View All Shipping Address</h5>
             </li>
             <li class="breadcrumb-item"><a href="index.php">
                     <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -33,7 +33,7 @@ $payments = $payment->getPayments();
                     Home </a>
             </li>
         </ol>
-        <!-- <a class="text-primary fs-13" href=javascript:void(0)">+ Add Shipping Address</a> -->
+        <a class="text-primary fs-13" href="create-shipping.php">+ Add Shipping Address</a>
     </div>
     <div class="container-fluid">
         <div class="row">
@@ -43,7 +43,7 @@ $payments = $payment->getPayments();
             <div class="col-xl-12 col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">View All Payments</h4>
+                        <h4 class="card-title">View All Shipping Addresses (Pickup Location)</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -51,55 +51,43 @@ $payments = $payment->getPayments();
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Fullname</th>
-                                        <th>User Id</th>
-                                        <th>Tracking Number</th>
-                                        <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>Reference</th>
-                                        <th>Channel</th>
-                                        <th>Ip Address</th>
-                                        <th>Customer Code</th>
-                                        <th>Amount</th>
-                                        <th>Platform</th>
-                                        <th>Paid At</th>
-                                        <th>Payment Status</th>
+                                        <th>Location</th>
+                                        <th>Shipping Fee</th>
+                                        <th>Status</th>
                                         <th>Date Created</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
                                     $id = 1;
-                                    if ($payments == []) {
+                                    if ($pickup_locations == []) {
                                     } else {
-                                        foreach ($payments as $payment) {
+                                        foreach ($pickup_locations as $pickup_location) {
                                     ?>
 
                                             <tr>
                                                 <td><?= $id ?></td>
-                                                <td class="text-info"><?= $payment['fullname'] ?></td>
-                                                <td><?= $payment['user_id'] ?></td>
-                                                <td><?= $payment['tracking_no'] ?></td>
-                                                <td><?= $payment['email'] ?></td>
-                                                <td><?= $payment['phone'] ?></td>
-                                                <td><?= $payment['reference'] ?></td>
-                                                <td><?= $payment['channel'] ?></td>
-                                                <td><?= $payment['ip_address'] ?></td>
-                                                <td><?= $payment['customer_code'] ?></td>
-                                                <td class="text-success">NN<?= number_format($payment['amount'], 0, '.', ',') ?></td>
-                                                <td><?= $payment['platform'] ?></td>
-                                                <td><?= $payment['paid_at'] ?></td>
+                                                <td><?= $pickup_location['location'] ?></td>
+                                                <td>N<?= $pickup_location['shipping_fee'] ?></td>
 
                                                 <td>
-                                                    <?php if ($payment['payment_status'] == 'success') : ?>
-                                                        <span class="text-success">Payment Success</span>
-                                                    <?php else : ?>
-                                                        <span class="text-danger">Payment Error!</span>
+                                                    <?php if ($pickup_location['status'] == '1') : ?>
+                                                        <span class="text-danger">Hidden!</span>
+                                                    <?php elseif ($pickup_location['status'] == '0') : ?>
+                                                        <span class="text-success">Visible!</span>
                                                     <?php endif; ?>
                                                 </td>
 
-                                                <td><?php echo date("H:i:s d-M-Y", strtotime($payment['date'])) ?></td>
+                                                <td><?php echo date("H:i:s d-M-Y", strtotime($pickup_location['date'])) ?></td>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <?php if ($_SESSION['user_data']['role'] == "2") : ?>
+                                                            <a href="edit-shipping.php?shipId=<?= $pickup_location['id'] ?>" class="btn btn-warning shadow btn-xs sharp"><i class="fa fa-pencil"></i></a>
+                                                        <?php endif; ?>
 
+                                                    </div>
+                                                </td>
                                             </tr>
 
                                     <?php
