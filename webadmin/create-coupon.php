@@ -63,6 +63,13 @@ include_once('components/sidebar.php');
                                 </div>
 
                                 <div class="mb-3 row">
+                                    <label class="col-sm-3 col-form-label">Limit:</label>
+                                    <div class="col-sm-9">
+                                        <input type="number" name="limit" class="form-control" placeholder="Enter price limit e.g 5% Discount from purchases above 20,000" required>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Any other info about coupon:</label>
                                     <div class="col-sm-9">
                                         <textarea name="other_info" class="form-control" placeholder="Enter Any Other Coupon Information (Optional)"></textarea>

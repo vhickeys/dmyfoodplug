@@ -35,7 +35,6 @@ $cart_items = $cart->getCartItems(session_id());
 <div class="rts-cart-area rts-section-gap bg_light-1">
     <div class="container">
 
-
         <div class="row g-5" id="dmyCart">
             <?php if ($cart_items != null) : ?>
                 <div class="col-xl-9 col-lg-12 col-md-12 col-12 ">
@@ -119,9 +118,9 @@ $cart_items = $cart->getCartItems(session_id());
                         <?php endforeach; ?>
 
                         <div class="bottom-cupon-code-cart-area">
-                            <form action="javascript:void(0)">
-                                <input type="text" placeholder="Cupon Code">
-                                <button class="rts-btn btn-primary">Apply Coupon</button>
+                            <form id="coupon-form">
+                                <input type="text" name="coupon_code" placeholder="Coupon Code">
+                                <button class="rts-btn btn-primary apply_coupon"><span class="spinner-border me-3 d-none" role="status" aria-hidden="true"></span>Apply Coupon</button>
                             </form>
                             <button class="rts-btn btn-primary mr--50 deleteAllCartItems">Clear All</button>
                         </div>
@@ -134,13 +133,6 @@ $cart_items = $cart->getCartItems(session_id());
                         <div class="shipping">
                             <span>Shipping</span>
                             <ul>
-                                <!-- <li>
-                                    <input type="radio" id="f-option" name="selector">
-                                    <label for="f-option"> Shipping</label>
-
-                                    <div class="check"></div>
-                                </li> -->
-
                                 <li>
                                     <label for="s-option">Dynamic Rate: N3,000 (Price may differ with location)</label>
 
@@ -148,22 +140,22 @@ $cart_items = $cart->getCartItems(session_id());
                                         <div class="inside"></div>
                                     </div>
                                 </li>
-                                <!-- 
-                                <li>
-                                    <input type="radio" id="t-option" name="selector">
-                                    <label for="t-option">Local Pickup</label>
-
-                                    <div class="check">
-                                        <div class="inside"></div>
-                                    </div>
-                                </li> -->
-
                             </ul>
                         </div>
+
                         <div class="bottom">
+
+                            <div class="wrapper" id="discountCoupon">
+                                <span>Coupon Code Discount</span>
+                                <h6 class="price" id="discountApplied"></h6>
+                                <hr>
+                            </div>
+
+
                             <div class="wrapper">
+
                                 <span>Subtotal</span>
-                                <h6 class="price">
+                                <h6 class="price" id="discountedPrice">
                                     <?php
 
                                     $total_price = 0;
@@ -196,7 +188,9 @@ $cart_items = $cart->getCartItems(session_id());
                                     ?>
 
                                 </h6>
+
                             </div>
+
                             <div class="button-area">
                                 <a href="checkout.php?uId=<?= session_id() ?>"><button class="rts-btn btn-primary">Proceed To Checkout</button></a>
                             </div>
@@ -213,9 +207,7 @@ $cart_items = $cart->getCartItems(session_id());
                     </div>
                 </div>
             <?php endif; ?>
-
         </div>
-
 
     </div>
 </div>

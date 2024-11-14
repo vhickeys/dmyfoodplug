@@ -51,7 +51,7 @@ $payment = new Payment($database);
 
 $shipping = new Shipping($database);
 
-$coupon = new Coupon($database);
+$coupon = new Coupon($database, $cart);
 
 $settings = new Settings($database);
 

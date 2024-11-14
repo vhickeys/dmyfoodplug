@@ -565,6 +565,9 @@ document.addEventListener('DOMContentLoaded', initializeCartInputs);
 
 $(document).ready(function () {
 
+  $("#discountCoupon").hide();
+
+
   // ====================================================================================
   // Add to Cart 
   // ====================================================================================
@@ -739,12 +742,76 @@ $(document).ready(function () {
     });
   });
 
+  // Coupon Code
+
+  $(document).on("submit", "#coupon-form", function (e) {
+    e.preventDefault(); // Prevent form submission
+
+    // Get the entered coupon code
+    var couponCode = $("input[name='coupon_code").val();
+    // alertify.success(couponCode);
+
+    if (couponCode == "") {
+      alertify.error("Enter your coupon code!");
+    } else {
+      var button = $(".apply_coupon");
+      var spinner = button.find('.spinner-border');
+      
+      // Show spinner and disable button
+      spinner.removeClass('d-none');
+      button.prop('disabled', true);
+      
+      $.ajax({
+        url: "webadmin/classes/process.php?action=apply-coupon", // Separate PHP script to handle coupon calculation
+        method: "POST",
+        data: { coupon_code: couponCode },
+        dataType: "json",
+
+        success: function (response) {
+          switch (response.status) {
+            case "error":
+              alertify.error(response.message);
+              break;
+            case "success":
+              $("#discountCoupon").show();
+              $("#discountApplied").html(
+                `${response.coupon_discount}% Discount Applied: N${response.discount}`
+              );
+              $("#discountedPrice").html(`N${response.total_price}`);
+              alertify.success(response.message);
+
+              // Disable the coupon code input and button
+              $("input[name='coupon_code']").prop("disabled", true);
+              button.prop("disabled", true);
+
+              let discountCode = couponCode;
+              
+              // Update the checkout button URL with the discount code
+              $(".button-area a").attr("href", `checkout.php?uId=${response.session_id}&coupon=${discountCode}`);
+              break;
+            default:
+              break;
+          }
+        },
+        error: function () {
+          alertify.error("Something went wrong!");
+        },
+        complete: function () {
+          // Hide spinner and enable button
+          spinner.addClass("d-none");
+          button.prop("disabled", false);
+        },
+      });
+    }
+  });
+
   // Check out
 
   $("#checkout").on('submit', function (e) {
     e.preventDefault();
 
     var user_id = $('#user_id').val();
+    var coupon = $('#coupon').val();
     var email = $('#email').val();
     var first_name = $('#first_name').val();
     var last_name = $('#last_name').val();
@@ -783,9 +850,15 @@ $(document).ready(function () {
           var tracking_no = response.tracking_no;
           if(response.status == 201) {
             alertify.success('Order placed Successfuly. Redirecting...');
-            setTimeout(function () {
-              window.location.href = "order-details.php?ord=" + user_id + "&trkNo=" + tracking_no;
-            }, 1500);
+            if(coupon != ''){
+              setTimeout(function () {
+                window.location.href = "order-details.php?ord=" + user_id + "&trkNo=" + tracking_no + "&coupon=" + coupon;
+              }, 1500);
+            } else {
+              setTimeout(function () {
+                window.location.href = "order-details.php?ord=" + user_id + "&trkNo=" + tracking_no;
+              }, 1500);
+            }
           } else if(response.status == 500) {
             alertify.error('Internal server error!');
           } else {

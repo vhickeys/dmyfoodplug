@@ -4,6 +4,14 @@
   display: none;
 }
 
+#discountCoupon {
+  display: none;
+}
+
+.cart-total-area-start-right .bottom .wrapper {
+  gap: 70px !important;
+}
+
 .dmy-add-cart {
   border: none !important;
   border-radius: 6px !important;

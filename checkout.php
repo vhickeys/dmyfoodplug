@@ -8,6 +8,14 @@ if (!isset($_GET['uId']) || empty($_GET['uId']) || $userExists == []) {
     echo "<script>window.history.back()</script>";
 }
 
+if (isset($_GET['coupon']) || !empty($_GET['coupon'])) {
+    $couponExists = $coupon->checkCouponExistStatus($_GET['coupon'] ?? '');
+    if ($couponExists == []) {
+        echo "<script>window.history.back()</script>";
+    } else {
+        $coupon_discount = $couponExists['discount'];
+    }
+}
 
 include_once 'components/header.php';
 include_once 'components/sidebar.php';
@@ -88,6 +96,7 @@ $shippingLocations = $shipping->getShippingLocations();
                     <h3 class="title">Billing Details</h3>
                     <form id="checkout">
                         <input type="hidden" id="user_id" name="user_id" value="<?= $_GET['uId'] ?? '' ?>">
+                        <input type="hidden" id="coupon" name="coupon" value="<?= $_GET['coupon'] ?? '' ?>">
                         <div class="single-input">
                             <label for="email">Email Address*</label>
                             <input id="email" name="email" type="email">
@@ -222,12 +231,31 @@ $shippingLocations = $shipping->getShippingLocations();
                                     }
                                 }
 
+                                if (isset($couponExists) && $couponExists != []) {
+                                    $discount_percentage = $coupon_discount;
+                                    $discount_factor = $discount_percentage / 100;
+                                    $discount = $discount_factor * $total_price;
+                                    $total_price -= $discount;
+                                }
+
                                 echo "N" . number_format($total_price, 0, '.', ',');
 
                                 ?>
                             </span>
                         </div>
                     <?php endif; ?>
+
+                    <?php if (isset($couponExists) && $couponExists != []) : ?>
+
+                        <div class="single-shop-list">
+                            <div class="left-area">
+                                <span>Discount Applied</span>
+                            </div>
+                            <span class="price"><?= $coupon_discount ?>% Discount</span>
+                        </div>
+
+                    <?php endif; ?>
+
 
                     <div class="single-shop-list">
                         <div class="left-area">

@@ -369,14 +369,25 @@ if (isset($_GET['action'])) {
 
             break;
 
+        case 'apply-coupon':
+            if (isset($_POST['coupon_code'])) {
+                $coupon_code = $_POST['coupon_code'];
+                $coupon->applyCoupon($coupon_code);
+            } else {
+                echo "<script>window.location.href='../../index.php'</script>";
+            }
+
+            break;
+
         case 'create-coupon':
             if (isset($_POST['submit-coupon'])) {
                 $code = $_POST['code'];
                 $discount = $_POST['discount'];
+                $limit = $_POST['limit'];
                 $other_info = $_POST['other_info'];
                 $status = $_POST['status'] == true ? '1' : '0';
 
-                $coupon->createCoupon($code, $discount, $other_info, $status);
+                $coupon->createCoupon($code, $discount, $limit, $other_info, $status);
             } else {
                 echo "<script>window.location.href='../../index.php'</script>";
             }

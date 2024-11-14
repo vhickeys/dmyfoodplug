@@ -425,6 +425,13 @@
 <script src="assets/alertifyjs/alertify.min.js"></script>
 <script>
     alertify.set('notifier', 'position', 'top-right');
+    <?php if (isset($_SESSION['error_message'])) : ?>
+        alertify.error('<?= $_SESSION['error_message'] ?>');
+        <?php unset($_SESSION['error_message']) ?>
+    <?php elseif (isset($_SESSION['error_message'])) : ?>
+        alertify.success('<?= $_SESSION['success_message'] ?>');
+        <?php unset($_SESSION['success_message']) ?>
+    <?php endif; ?>
 </script>
 
 <script defer src="assets/js/custom.js"></script>

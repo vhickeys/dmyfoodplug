@@ -8,6 +8,15 @@ if (!isset($_GET['ord']) || empty($_GET['ord']) || !isset($_GET['trkNo']) || emp
     echo "<script>window.history.back()</script>";
 }
 
+if (isset($_GET['coupon']) || !empty($_GET['coupon'])) {
+    $couponExists = $coupon->checkCouponExistStatus($_GET['coupon'] ?? '');
+    if ($couponExists == []) {
+        echo "<script>window.history.back()</script>";
+    } else {
+        $coupon_discount = $couponExists['discount'];
+    }
+}
+
 include_once 'components/header.php';
 include_once 'components/sidebar.php';
 
@@ -74,7 +83,7 @@ $shipping_fee = $shipping_details['shipping_fee'];
                                         <th class="text-right">Amount</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <>
                                     <?php
                                     $subtotal = 0; // Initialize subtotal
 
@@ -103,7 +112,13 @@ $shipping_fee = $shipping_details['shipping_fee'];
                                         endforeach;
                                     endif;
 
-                                    // print_r($shipping_details);
+                                    if (isset($couponExists) && $couponExists != []) {
+                                        $discount_percentage = $coupon_discount;
+                                        $discount_factor = $discount_percentage / 100;
+                                        $discount = $discount_factor * $subtotal;
+                                        $subtotal -= $discount;
+                                    }
+
                                     $shipping = $shipping_fee ?? 3000; // Shipping cost
                                     $grand_total = $subtotal + $shipping; // Calculate grand total
                                     ?>
@@ -113,6 +128,15 @@ $shipping_fee = $shipping_details['shipping_fee'];
                                         <td class="text-right">N<?= number_format($subtotal, 0, '.', ',') ?></td>
                                     </tr>
 
+                                    <?php if (isset($couponExists) && $couponExists != []) : ?>
+                                        
+                                        <tr>
+                                            <td colspan="3" class="text-end f-w-600">Discount Applied</td>
+                                            <td class="text-right"><?= $coupon_discount ?>% Discount</td>
+                                        </tr>
+
+                                    <?php endif; ?>
+
                                     <tr>
                                         <td colspan="3" class="text-end f-w-600">Shipping Fee</td>
                                         <td class="text-right">N<?= number_format($shipping, 0, '.', ',') ?></td>
@@ -121,7 +145,7 @@ $shipping_fee = $shipping_details['shipping_fee'];
                                         <td colspan="3" class="text-end f-w-600">Grand Total</td>
                                         <td class="text-right f-w-600">N<?= number_format($grand_total, 0, '.', ',') ?></td>
                                     </tr>
-                                </tbody>
+                                    </tbody>
 
                             </table>
                         </div>
@@ -139,22 +163,13 @@ $shipping_fee = $shipping_details['shipping_fee'];
                 </div>
 
                 <div class="buttons-area-invoice no-print mb--30">
-                    <!-- <a href="javascript:window.print()" class="rts-btn btn-primary radious-sm with-icon">
+                    <a href="javascript:window.print()" class="rts-btn btn-primary radious-sm with-icon">
                         <div class="btn-text">Print Now</div>
                         <div class="arrow-icon">
                             <i class="fa-regular fa-print"></i>
                         </div>
                         <div class="arrow-icon">
                             <i class="fa-regular fa-print"></i>
-                        </div>
-                    </a> -->
-                    <a href="javascript:void(0)" download class="rts-btn btn-primary radious-sm with-icon">
-                        <div class="btn-text">Download</div>
-                        <div class="arrow-icon">
-                            <i class="fa-thin fa-download"></i>
-                        </div>
-                        <div class="arrow-icon">
-                            <i class="fa-thin fa-download"></i>
                         </div>
                     </a>
 

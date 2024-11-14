@@ -1,1 +1,3 @@
 Added new database called "Coupons"
+Added price_limit to coupons table
+Added coupon_id to orders table

@@ -76,6 +76,7 @@ $coupons = $coupon->getCoupons();
                                         <th>ID</th>
                                         <th>Coupon Code</th>
                                         <th>Discount</th>
+                                        <th>Price Limit</th>
                                         <th>Status</th>
                                         <th>Date Created</th>
                                         <th>Actions</th>
@@ -93,6 +94,7 @@ $coupons = $coupon->getCoupons();
                                                 <td><?= $id ?></td>
                                                 <td><?= $coupon['code'] ?></td>
                                                 <td><?= $coupon['discount'] ?>%</td>
+                                                <td>N<?= number_format($coupon['price_limit'], 0, '.', ',') ?></td>
 
                                                 <td>
                                                     <?php if ($coupon['status'] == '1') : ?>
