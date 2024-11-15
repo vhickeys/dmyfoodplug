@@ -20,7 +20,7 @@ class Coupon
             exit(0);
         } else {
             if ($this->checkCouponExists($code) > 0) {
-                $_SESSION['errorMessage'] = "Shipping Location Already Exists!";
+                $_SESSION['errorMessage'] = "Coupon Already Exists!";
                 header("location: ../create-coupon.php");
                 exit(0);
             } else {
@@ -113,7 +113,7 @@ class Coupon
                 ];
 
                 echo json_encode($response);
-            } elseif ($this->isCouponUsed() != []) {
+            } elseif ($this->isCouponUsed($coupon_code) > 0) {
                 $response = [
                     "status" => "error",
                     "message" => "You have used this coupon code already! You cannot use it again.",
@@ -162,15 +162,28 @@ class Coupon
         return $result ?: [];
     }
 
-    public function isCouponUsed()
+    public function isCouponUsed($coupon_code)
     {
         $user_id = session_id();
-        $sql = "SELECT coupon_id FROM orders WHERE user_id=?";
+        $sql = "SELECT * FROM orders WHERE user_id=? AND coupon_code=? ORDER BY id ASC";
+        $statement = $this->db->prepare($sql);
+        $statement->bindParam(1, $user_id, PDO::PARAM_STR);
+        $statement->bindParam(2, $coupon_code, PDO::PARAM_STR);
+        $statement->execute();
+        $result = $statement->rowCount();
+
+        return $result ?: 0;
+    }
+
+    public function getCoupon()
+    {
+        $user_id = session_id();
+        $sql = "SELECT coupon_code FROM orders WHERE user_id=? ORDER BY id ASC";
         $statement = $this->db->prepare($sql);
         $statement->bindParam(1, $user_id, PDO::PARAM_STR);
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_ASSOC);
 
-        return $result ?: [];
+        return $result ?: null;
     }
 }

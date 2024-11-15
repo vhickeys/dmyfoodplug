@@ -10,7 +10,11 @@ if (!isset($_GET['ord']) || empty($_GET['ord']) || !isset($_GET['trkNo']) || emp
 
 if (isset($_GET['coupon']) || !empty($_GET['coupon'])) {
     $couponExists = $coupon->checkCouponExistStatus($_GET['coupon'] ?? '');
+    $isCouponUsed = $coupon->isCouponUsed($_GET['coupon'] ?? '');
+
     if ($couponExists == []) {
+        echo "<script>window.history.back()</script>";
+    } elseif ($isCouponUsed > 1) {
         echo "<script>window.history.back()</script>";
     } else {
         $coupon_discount = $couponExists['discount'];
@@ -23,13 +27,13 @@ include_once 'components/sidebar.php';
 $order_details = $order->getOrderDetails($_GET['ord'], $_GET['trkNo']);
 $order_info = $order->getOrder($_GET['ord'], $_GET['trkNo']);
 
-$shipping_id = $order_info['pickup_location'];
-$shipping_details = $shipping->getShippingDetails($shipping_id);
-$shipping_location = $shipping_details['location'];
-$shipping_fee = $shipping_details['shipping_fee'];
+if ($order_info != []) {
 
-// echo "<pre>";
-// print_r($order_details);
+    $shipping_id = $order_info['pickup_location'];
+    $shipping_details = $shipping->getShippingDetails($shipping_id);
+    $shipping_location = $shipping_details['location'];
+    $shipping_fee = $shipping_details['shipping_fee'];
+}
 
 ?>
 
@@ -83,7 +87,7 @@ $shipping_fee = $shipping_details['shipping_fee'];
                                         <th class="text-right">Amount</th>
                                     </tr>
                                 </thead>
-                                <>
+                                <tbody>
                                     <?php
                                     $subtotal = 0; // Initialize subtotal
 
@@ -129,7 +133,7 @@ $shipping_fee = $shipping_details['shipping_fee'];
                                     </tr>
 
                                     <?php if (isset($couponExists) && $couponExists != []) : ?>
-                                        
+
                                         <tr>
                                             <td colspan="3" class="text-end f-w-600">Discount Applied</td>
                                             <td class="text-right"><?= $coupon_discount ?>% Discount</td>
@@ -145,7 +149,7 @@ $shipping_fee = $shipping_details['shipping_fee'];
                                         <td colspan="3" class="text-end f-w-600">Grand Total</td>
                                         <td class="text-right f-w-600">N<?= number_format($grand_total, 0, '.', ',') ?></td>
                                     </tr>
-                                    </tbody>
+                                </tbody>
 
                             </table>
                         </div>

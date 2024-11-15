@@ -102,7 +102,7 @@ function passwordChangeMail($sendingMail, $recepientMail, $recepient)
     }
 }
 
-function invoiceMail($sendingMail, $recepientMail, $recepient, $tracking_no, $date, $subtotal, $shipping, $grand_total, $address, $city, $country, $phone)
+function invoiceMail($sendingMail, $recepientMail, $recepient, $tracking_no, $date, $subtotal, $discount, $shipping, $grand_total, $address, $city, $country, $phone, $office_phone, $office_email, $office_address, $order_items_html, $shipping_location)
 {
     //Create an instance; passing `true` enables exceptions
     $mail = new PHPMailer(true);
@@ -133,11 +133,11 @@ function invoiceMail($sendingMail, $recepientMail, $recepient, $tracking_no, $da
 
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
-        $mail->Subject = "Dmy Foodplug Invoice - Status(Unpaid)";
+        $mail->Subject = "Dmy Foodplug Invoice - Status (Unpaid)";
 
         // Load the HTML template from a file
-        $placeholders = array('[Name]', '[Order]', '[Date]', '[Subtotal]', '[Shipping]', '[Grand Total]', '[Address]', '[City]', '[Country]', '[Phone]');
-        $replacements = array($recepient, $tracking_no, $date, $subtotal, $shipping, $grand_total, $address, $city, $country, $phone);
+        $placeholders = array('[Name]', '[Status]', '[Tracking No]', '[Date]', '[Subtotal]', '[Discount]', '[Shipping]', '[Grand Total]', '[Address]', '[City]', '[Country]', '[Phone]', '[Email]', '[Office Phone]', '[Office Email]', '[Office Address]', '[OrderItems]', '[Shipping Location]');
+        $replacements = array($recepient, "Pending Payment", $tracking_no, $date, $subtotal, $discount, $shipping, $grand_total, $address, $city, $country, $phone, $recepientMail, $office_phone, $office_email, $office_address, $order_items_html, $shipping_location);
 
         $message = file_get_contents('email-templates/invoice.html'); // Replace with the path to your HTML template file
         $message = str_replace($placeholders, $replacements, $message); // Replace [Username] with the actual username

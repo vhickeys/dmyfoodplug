@@ -37,6 +37,8 @@ $database = new Database();
 
 $user = new User($database);
 
+$settings = new Settings($database);
+
 $category = new Category($database);
 
 $record = new Record($database);
@@ -45,15 +47,13 @@ $product = new Product($database);
 
 $cart = new Cart($database);
 
-$order = new Order($database, $cart);
-
-$payment = new Payment($database);
-
 $shipping = new Shipping($database);
 
 $coupon = new Coupon($database, $cart);
 
-$settings = new Settings($database);
+$order = new Order($database, $cart, $shipping, $settings);
+
+$payment = new Payment($database);
 
 $contact = new Contact($database);
 

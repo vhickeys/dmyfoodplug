@@ -321,6 +321,7 @@ if (isset($_GET['action'])) {
         case 'placeOrder':
             if (isset($_POST['email']) && isset($_POST['user_id'])) {
                 $user_id = $_POST['user_id'];
+                $coupon_code = $_POST['coupon'] ?? '';
                 $email = $_POST['email'];
                 $first_name = $_POST['first_name'];
                 $last_name = $_POST['last_name'];
@@ -334,7 +335,7 @@ if (isset($_GET['action'])) {
                 $order_notes = $_POST['order_notes'];
                 $payment_mode = $_POST['payment_mode'];
 
-                $order->placeOrder($user_id, $email, $first_name, $last_name, $country, $address, $pickup_location, $city, $state, $zip_code, $phone, $order_notes, $payment_mode);
+                $order->placeOrder($user_id, $coupon_code, $email, $first_name, $last_name, $country, $address, $pickup_location, $city, $state, $zip_code, $phone, $order_notes, $payment_mode);
             } else {
                 echo 500;
             }

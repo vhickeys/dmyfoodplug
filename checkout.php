@@ -10,7 +10,10 @@ if (!isset($_GET['uId']) || empty($_GET['uId']) || $userExists == []) {
 
 if (isset($_GET['coupon']) || !empty($_GET['coupon'])) {
     $couponExists = $coupon->checkCouponExistStatus($_GET['coupon'] ?? '');
+    $isCouponUsed = $coupon->isCouponUsed($_GET['coupon'] ?? '');
     if ($couponExists == []) {
+        echo "<script>window.history.back()</script>";
+    } elseif ($isCouponUsed > 0) {
         echo "<script>window.history.back()</script>";
     } else {
         $coupon_discount = $couponExists['discount'];
