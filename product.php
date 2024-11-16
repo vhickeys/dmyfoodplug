@@ -85,10 +85,10 @@ $product_slots = $product->getProdMsrmentById("product_slots", $prodExists['id']
                                     <?php if ($prodExists['price_range'] == '') : ?>
 
                                         <span class="product-price mb--40 d-block" style="color: #DC2626; font-weight: 600;">
-                                            N<?= $prodExists['selling_price'] ?? '' ?>
+                                            ₦<?= number_format($prodExists['selling_price'] ?? '', 0, ".", ",") ?>
                                             <?php if ($prodExists['cost_price'] != '') : ?>
                                                 <span class="old-price ml--15">N
-                                                    <?= $prodExists['cost_price'] ?? '0' ?>
+                                                    <?= number_format($prodExists['cost_price'] ?? '0', 0, ".", ",") ?>
                                                 </span>
                                             <?php endif; ?>
                                         </span>
@@ -488,9 +488,9 @@ $product_slots = $product->getProdMsrmentById("product_slots", $prodExists['id']
                                                     <div class="price-area">
                                                         <?php if ($product['price_range'] == '') : ?>
 
-                                                            <span class="current">N<?= $product['selling_price'] ?? '' ?>
+                                                            <span class="current">₦<?= number_format($product['selling_price'] ?? '', 0, ".", ",")  ?>
                                                                 <?php if ($product['cost_price'] != '') : ?>
-                                                                    <span class="previous">N<?= $product['cost_price'] ?? '0' ?></span>
+                                                                    <span class="previous">₦<?= number_format($product['cost_price'] ?? '0', 0, ".", ",")  ?></span>
                                                                 <?php endif; ?>
                                                             </span>
 
@@ -505,7 +505,7 @@ $product_slots = $product->getProdMsrmentById("product_slots", $prodExists['id']
 
                                                     <div class="cart-counter-action">
                                                         <div class="">
-                                                           
+
                                                         </div>
                                                         <a href="product.php?prod=<?= $product['slug'] ?? '' ?>" class="rts-btn btn-primary radious-sm with-icon">
                                                             <div class="btn-text">

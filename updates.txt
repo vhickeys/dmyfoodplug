@@ -1,6 +1,0 @@
-Added new database called "Coupons"
-Added price_limit to coupons table
-Added coupon_code to orders table
-Add reviews
-add emails
-add 404

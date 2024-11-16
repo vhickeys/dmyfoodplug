@@ -53,7 +53,7 @@ $coupon = new Coupon($database, $cart);
 
 $order = new Order($database, $cart, $shipping, $settings);
 
-$payment = new Payment($database);
+$payment = new Payment($database, $order, $settings, $shipping);
 
 $contact = new Contact($database);
 

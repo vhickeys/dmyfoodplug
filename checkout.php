@@ -37,11 +37,11 @@ $shippingLocations = $shipping->getShippingLocations();
         <div class="row">
             <div class="col-lg-12">
                 <div class="navigator-breadcrumb-wrapper">
-                    <a href="index.html">Home</a>
+                    <a href="index.php">Home</a>
                     <i class="fa-regular fa-chevron-right"></i>
-                    <a class="#" href="index.html">Shop</a>
+                    <a class="#" href="shop.php">Shop</a>
                     <i class="fa-regular fa-chevron-right"></i>
-                    <a class="current" href="index.html">Checkout</a>
+                    <a class="current" href="javascript:void(0)">Checkout</a>
                 </div>
             </div>
         </div>
@@ -147,7 +147,7 @@ $shippingLocations = $shipping->getShippingLocations();
                             <input id="state" name="state" type="text">
                         </div>
                         <div class="single-input">
-                            <label for="zip">Zip Code*</label>
+                            <label for="zip">Zip Code (optional)</label>
                             <input id="zip_code" name="zip_code" type="text">
                         </div>
                         <div class="single-input">
@@ -155,7 +155,7 @@ $shippingLocations = $shipping->getShippingLocations();
                             <input id="phone" name="phone" type="text">
                         </div>
                         <div class="single-input">
-                            <label for="order_notes">Order Notes*</label>
+                            <label for="order_notes">Order Notes (optional)</label>
                             <textarea id="order_notes" name="order_notes"></textarea>
                         </div>
                 </div>
@@ -183,7 +183,7 @@ $shippingLocations = $shipping->getShippingLocations();
                                         <?= $cart_item['product_name'] ?>
                                     </a>
                                 </div>
-                                <span class="price">N<?php
+                                <span class="price">₦<?php
                                                         $product_price = 0;
                                                         if ($cart_item['prod_mrsmt_cat'] == '0' && $cart_item['prod_mrsmt_id'] == '0') {
                                                             $product_price = $cart_item['product_price'];
@@ -241,7 +241,7 @@ $shippingLocations = $shipping->getShippingLocations();
                                     $total_price -= $discount;
                                 }
 
-                                echo "N" . number_format($total_price, 0, '.', ',');
+                                echo "₦" . number_format($total_price, 0, '.', ',');
 
                                 ?>
                             </span>
@@ -277,7 +277,7 @@ $shippingLocations = $shipping->getShippingLocations();
                             <?php
                             $shipping_cost = 3000;
                             $total_with_shipping_cost = $total_price + $shipping_cost;
-                            echo "N" . number_format($total_with_shipping_cost, 0, '.', ',');
+                            echo "₦" . number_format($total_with_shipping_cost, 0, '.', ',');
                             ?>
                         </span>
                     </div>

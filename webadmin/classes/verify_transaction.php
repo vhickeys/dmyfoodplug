@@ -4,7 +4,7 @@ require 'functions.php';
 
 $userOrderExists = $order->checkUserOrderExists($_GET['userId'], $_GET['trkNo']);
 
-if((empty($_GET['userId']) || !isset($_GET['userId'])) || (empty( $_GET['trkNo']) || !isset( $_GET['trkNo'])) || (empty($_GET['reference']) || !isset($_GET['reference'])) || ($userOrderExists == [])) {
+if ((empty($_GET['userId']) || !isset($_GET['userId'])) || (empty($_GET['trkNo']) || !isset($_GET['trkNo'])) || (empty($_GET['reference']) || !isset($_GET['reference'])) || ($userOrderExists == [])) {
     echo "<script>window.history.back()</script>";
 }
 
@@ -19,7 +19,7 @@ $reference = $_GET['reference'];
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => "https://api.paystack.co/transaction/verify/". rawurlencode($reference),
+    CURLOPT_URL => "https://api.paystack.co/transaction/verify/" . rawurlencode($reference),
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
     CURLOPT_MAXREDIRS => 10,
@@ -27,9 +27,9 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => "GET",
     CURLOPT_HTTPHEADER => array(
-        // "Authorization: Bearer sk_test_3a66810de4128b43553402ce0b6f589cacb11da2", // replace with your secret key key or Uncomment this for testing
-        "Authorization: Bearer sk_live_ca6f61dfb513be36c8e13e1be06bffcca29d1251", // replace with your secret key
-        "Cache-Control: no-cache",
+        "Authorization: Bearer sk_test_3a66810de4128b43553402ce0b6f589cacb11da2", // replace with your secret key key or Uncomment this for testing
+        // "Authorization: Bearer sk_live_ca6f61dfb513be36c8e13e1be06bffcca29d1251", // replace with your secret key
+        // "Cache-Control: no-cache",
     ),
 ));
 
@@ -64,11 +64,7 @@ if ($result['data']['status'] == "success") {
     $amount = $result['data']['amount'];
 
     $payment->insertCustomerRecord($user_id, $trkNo, $fullname, $email, $phone, $payment_status, $reference, $channel, $ip_address, $paid_at, $transaction_date, $customer_code, $amount, "1");
-
-} 
-else {
+} else {
     header("Location: ../payment_error.php?userId=$user_id&trkNo=$AEFref&reference=$reference&status=paymentError");
     exit;
 }
-
-

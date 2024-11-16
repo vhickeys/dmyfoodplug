@@ -10,11 +10,11 @@ if (!isset($_GET['ord']) || empty($_GET['ord']) || !isset($_GET['trkNo']) || emp
 
 if (isset($_GET['coupon']) || !empty($_GET['coupon'])) {
     $couponExists = $coupon->checkCouponExistStatus($_GET['coupon'] ?? '');
-    $isCouponUsed = $coupon->isCouponUsed($_GET['coupon'] ?? '');
+    $isCouponUsed = $coupon->checkCouponUsed($_GET['coupon'] ?? '');
 
     if ($couponExists == []) {
         echo "<script>window.history.back()</script>";
-    } elseif ($isCouponUsed > 1) {
+    } elseif ($isCouponUsed > 0) {
         echo "<script>window.history.back()</script>";
     } else {
         $coupon_discount = $couponExists['discount'];
@@ -107,9 +107,9 @@ if ($order_info != []) {
                                                         <span><?= $order_detail['product_name'] ?></span>
                                                     </div>
                                                 </td>
-                                                <td class="text-center">N<?= number_format($product_price, 0, '.', ',') ?></td>
+                                                <td class="text-center">₦<?= number_format($product_price, 0, '.', ',') ?></td>
                                                 <td class="text-center"><?= $product_qty ?></td>
-                                                <td class="text-right">N<?= number_format($product_price_total, 0, '.', ',') ?></td>
+                                                <td class="text-right">₦<?= number_format($product_price_total, 0, '.', ',') ?></td>
                                             </tr>
 
                                     <?php
@@ -129,7 +129,7 @@ if ($order_info != []) {
 
                                     <tr>
                                         <td colspan="3" class="text-end f-w-600">SubTotal</td>
-                                        <td class="text-right">N<?= number_format($subtotal, 0, '.', ',') ?></td>
+                                        <td class="text-right">₦<?= number_format($subtotal, 0, '.', ',') ?></td>
                                     </tr>
 
                                     <?php if (isset($couponExists) && $couponExists != []) : ?>
@@ -143,11 +143,11 @@ if ($order_info != []) {
 
                                     <tr>
                                         <td colspan="3" class="text-end f-w-600">Shipping Fee</td>
-                                        <td class="text-right">N<?= number_format($shipping, 0, '.', ',') ?></td>
+                                        <td class="text-right">₦<?= number_format($shipping, 0, '.', ',') ?></td>
                                     </tr>
                                     <tr>
                                         <td colspan="3" class="text-end f-w-600">Grand Total</td>
-                                        <td class="text-right f-w-600">N<?= number_format($grand_total, 0, '.', ',') ?></td>
+                                        <td class="text-right f-w-600">₦<?= number_format($grand_total, 0, '.', ',') ?></td>
                                     </tr>
                                 </tbody>
 

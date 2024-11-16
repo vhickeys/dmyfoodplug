@@ -83,7 +83,7 @@ $cart_items = $cart->getCartItems(session_id());
                                     </div>
                                 </div>
                                 <div class="price">
-                                    <p>N<?php
+                                    <p>₦<?php
                                         $product_price = 0;
                                         if ($cart_item['prod_mrsmt_cat'] == '0' && $cart_item['prod_mrsmt_id'] == '0') {
                                             $product_price = $cart_item['product_price'];
@@ -183,7 +183,7 @@ $cart_items = $cart->getCartItems(session_id());
                                         }
                                     }
 
-                                    echo "N" . number_format($total_price, 0, '.', ',');
+                                    echo "₦" . number_format($total_price, 0, '.', ',');
 
                                     ?>
 

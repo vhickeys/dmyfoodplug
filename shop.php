@@ -27,7 +27,7 @@ include_once 'components/sidebar.php';
                         <?php if ($paginated_products != null) {
                             foreach ($paginated_products as $product) {
 
-                                ?>
+                        ?>
                                 <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12">
                                     <div class="single-shopping-card-one">
                                         <!-- iamge and sction area start -->
@@ -58,10 +58,10 @@ include_once 'components/sidebar.php';
                                             <?php if ($product['price_range'] == ''): ?>
 
                                                 <div class="price-area">
-                                                    <span class="current">N<?= $product['selling_price'] ?? '' ?></span>
+                                                    <span class="current">₦<?= number_format($product['selling_price'] ?? '', 0, ".", ",")  ?></span>
                                                     <?php if ($product['cost_price'] != ''): ?>
                                                         <div class="previous">N
-                                                            <?= $product['cost_price'] ?? '' ?>
+                                                            <?= number_format($product['cost_price'] ?? '', 0, ".", ",")  ?>
                                                         </div>
                                                     <?php endif; ?>
                                                 </div>
@@ -96,7 +96,7 @@ include_once 'components/sidebar.php';
                                         </div>
                                     </div>
                                 </div>
-                                <?php
+                            <?php
                             }
                         } else {
                             ?>
@@ -105,7 +105,7 @@ include_once 'components/sidebar.php';
                                     <div class="alert alert-danger">Product not found!</div>
                                 </div>
                             </div>
-                            <?php
+                        <?php
                         }
                         ?>
                     </div>

@@ -174,6 +174,20 @@ class Coupon
 
         return $result ?: 0;
     }
+    public function checkCouponUsed($coupon_code)
+    {
+        $user_id = session_id();
+        $coupon_used = "yes";
+        $sql = "SELECT * FROM orders WHERE user_id=? AND coupon_code=? AND coupon_used=?";
+        $statement = $this->db->prepare($sql);
+        $statement->bindParam(1, $user_id, PDO::PARAM_STR);
+        $statement->bindParam(2, $coupon_code, PDO::PARAM_STR);
+        $statement->bindParam(3, $coupon_used, PDO::PARAM_STR);
+        $statement->execute();
+        $result = $statement->rowCount();
+
+        return $result ?: 0;
+    }
 
     public function getCoupon()
     {

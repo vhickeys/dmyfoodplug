@@ -58,7 +58,7 @@ include_once 'components/sidebar.php';
                                             <?php if ($product['price_range'] == '') : ?>
 
                                                 <div class="price-area">
-                                                    <span class="current">N<?= $product['selling_price'] ?? '' ?></span>
+                                                    <span class="current">₦<?= number_format($product['selling_price'] ?? '', 0, ".", ",")  ?></span>
                                                     <!-- <div class="previous">$36.00</div> -->
                                                 </div>
 

@@ -150,9 +150,9 @@ include_once 'components/sidebar.php';
                                             <?php if ($trendingProduct['price_range'] == '') : ?>
 
                                                 <div class="price-area">
-                                                    <span class="current">N<?= $trendingProduct['selling_price'] ?? '' ?></span>
+                                                    <span class="current">₦<?= number_format($trendingProduct['selling_price'] ?? '', 0, ".", ",")  ?></span>
                                                     <?php if ($trendingProduct['cost_price'] != '') : ?>
-                                                        <div class="previous">N<?= $trendingProduct['cost_price'] ?? '' ?></div>
+                                                        <div class="previous">₦<?= number_format($trendingProduct['cost_price'] ?? '', 0, ".", ",")  ?></div>
                                                     <?php endif; ?>
                                                 </div>
 
