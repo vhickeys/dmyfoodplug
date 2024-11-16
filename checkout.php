@@ -115,7 +115,7 @@ $shippingLocations = $shipping->getShippingLocations();
                             </div>
                         </div>
                         <div class="single-input">
-                            <label for="country">Country / Region*</label>
+                            <label for="country">Country / Region (optional)</label>
                             <input id="country" name="country" type="text">
                         </div>
 
@@ -143,7 +143,7 @@ $shippingLocations = $shipping->getShippingLocations();
                         </div>
 
                         <div class="single-input">
-                            <label for="state">State*</label>
+                            <label for="state">State (optional)</label>
                             <input id="state" name="state" type="text">
                         </div>
                         <div class="single-input">
