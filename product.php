@@ -69,7 +69,8 @@ $product_slots = $product->getProdMsrmentById("product_slots", $prodExists['id']
                                 <div class="contents product-dmy-data">
                                     <div class="product-status">
                                         <span class="product-catagory">
-                                            <?= $prodExists['soldout'] == '1' ? 'Sold Out!' : 'Sale!' ?>
+                                            <?= $prodExists['soldout'] == '1' || $prodExists['items_in_stock'] <= 0 ? 'Sold Out!' : 'Sale!' ?>
+
                                         </span>
                                         <div class="rating-stars-group">
                                             <div class="rating-star"><i class="fas fa-star"></i></div>
@@ -114,7 +115,7 @@ $product_slots = $product->getProdMsrmentById("product_slots", $prodExists['id']
 
                                         <hr class="section-seperator">
 
-                                        <?php if ($prodExists['price_range'] != '' && $prodExists['soldout'] == '0') : ?>
+                                        <?php if ($prodExists['price_range'] != '' && $prodExists['soldout'] == '0' && $prodExists['items_in_stock'] > 0) : ?>
 
                                             <form id="addtoCartwithMrsmts">
                                                 <div class="mb-5">
@@ -197,7 +198,7 @@ $product_slots = $product->getProdMsrmentById("product_slots", $prodExists['id']
 
                                         <?php endif; ?>
 
-                                        <?php if ($prodExists['price_range'] == '' && $prodExists['soldout'] == '0') : ?>
+                                        <?php if ($prodExists['price_range'] == '' && $prodExists['soldout'] == '0' && $prodExists['items_in_stock'] > 0) : ?>
 
                                             <div class="product-bottom-action mt-5">
 
