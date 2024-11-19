@@ -138,6 +138,32 @@ function authCheckById($id, $page)
         exit(0);
     }
 }
+function adminCheckById($id, $page)
+{
+    global $userAccess;
+
+    if (!isset($_SESSION['user_data']['fullName']) && !isset($_SESSION['user_data']['email'])) {
+        $_SESSION['message'] = "You are not authorized to access this page. Please Login";
+        header("location: login.php");
+        exit(0);
+    } else if ($userAccess == "1") {
+        $_SESSION['message'] = "Your account has been suspended! Please contact admin";
+        header("location: ./login.php");
+        exit(0);
+    } else if ($_SESSION['user_data']['role'] == "0") {
+        $_SESSION['message'] = "You are not authorized to access this page. Not an Admin!";
+        header("location: ../index.php");
+        exit(0);
+    } else if ($_SESSION['user_data']['role'] == "1") {
+        $_SESSION['message'] = "You are not authorized to access this page. Not an Admin!";
+        header("location: index.php");
+        exit(0);
+    } else if (!isset($id) || ($id == "")) {
+        $_SESSION['errorMessage'] = "You are not authorized to access this page! No ID Found.";
+        header("location: $page.php");
+        exit(0);
+    }
+}
 
 function authCheckBy2records($slug, $page, $table, $column1, $column2, $column1Data, $column2Data)
 {
@@ -372,7 +398,7 @@ function paginateSearch($search, $sqlTotal, $sql)
 {
     global $database;
 
-    $cStatus = 0; 
+    $cStatus = 0;
     $pStatus = 0;
 
     // Check if a search term is provided

@@ -2,7 +2,7 @@
 
 require('classes/functions.php');
 
-adminAuth();
+authCheck();
 
 $title = "Contact Requests";
 include_once('components/head.php');

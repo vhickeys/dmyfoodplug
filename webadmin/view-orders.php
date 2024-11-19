@@ -86,10 +86,7 @@ $orders = $order->getAllOrders();
                                                 <td><?php echo date("H:i:s d-M-Y", strtotime($order['date'])) ?></td>
                                                 <td>
                                                     <div class="d-flex">
-                                                        <?php if ($_SESSION['user_data']['role'] == "2") : ?>
-                                                            <a href="order-details.php?ordId=<?= $order['id'] ?>" class="btn btn-success shadow btn-xs sharp"><i class="fa fa-eye"></i></a>
-                                                        <?php endif; ?>
-
+                                                        <a href="order-details.php?ordId=<?= $order['id'] ?>" class="btn btn-success shadow btn-xs sharp"><i class="fa fa-eye"></i></a>
                                                     </div>
                                                 </td>
                                             </tr>

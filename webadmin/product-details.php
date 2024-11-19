@@ -83,9 +83,16 @@ $product_slots = $product->getProductWSSlot("product_slots", $product_id);
                                             </div>
                                         </div>
                                         <div class="mt-4">
-                                            <a href="create-product.php" class="btn btn-success mb-1 me-1">Add a Product/Weight/Size/Slot</a>
-                                            <a href="edit-product.php?pId=<?= $product_details['id'] ?>" class="btn btn-secondary mb-1">Edit this Product</a>
+
+                                            <?php if ($_SESSION['user_data']['role'] == "2") : ?>
+
+                                                <a href="create-product.php" class="btn btn-success mb-1 me-1">Add a Product/Weight/Size/Slot</a>
+                                                <a href="edit-product.php?pId=<?= $product_details['id'] ?>" class="btn btn-secondary mb-1">Edit this Product</a>
+
+                                            <?php endif; ?>
                                         </div>
+
+
                                     </div>
                                     <!-- Modal -->
                                     <div class="modal fade" id="editWeightModal1">
@@ -128,77 +135,79 @@ $product_slots = $product->getProductWSSlot("product_slots", $product_id);
                                         </div>
                                     </div>
 
-                                    <!--Delete Product Weight Modal -->
-                                    <form method="post" action="classes/process.php?action=delete-product-weight">
-                                        <div class="modal fade" id="deleteProdWeightModal" tabindex="-1" aria-labelledby="deleteWSSModal" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="">Delete This Product Weight?</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <input type="hidden" value="<?= $_GET['pId'] ?>" name="product_id">
-                                                        <input type="hidden" id="deleteProdWeightId" name="deleteProdWeightId">
-                                                        <h4>Are you sure you want to delete this Product Weight?</h4>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <button type="submit" name="delete-product-weight" class="btn btn-danger">Delete
-                                                            Product Weight</button>
+                                    <?php if ($_SESSION['user_data']['role'] == "2") : ?>
+                                        <!--Delete Product Weight Modal -->
+                                        <form method="post" action="classes/process.php?action=delete-product-weight">
+                                            <div class="modal fade" id="deleteProdWeightModal" tabindex="-1" aria-labelledby="deleteWSSModal" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="">Delete This Product Weight?</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <input type="hidden" value="<?= $_GET['pId'] ?>" name="product_id">
+                                                            <input type="hidden" id="deleteProdWeightId" name="deleteProdWeightId">
+                                                            <h4>Are you sure you want to delete this Product Weight?</h4>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <button type="submit" name="delete-product-weight" class="btn btn-danger">Delete
+                                                                Product Weight</button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </form>
+                                        </form>
 
-                                    <!--Delete Product Size Modal -->
-                                    <form method="post" action="classes/process.php?action=delete-product-size">
-                                        <div class="modal fade" id="deleteProdSizeModal" tabindex="-1" aria-labelledby="deleteProdSizeModal" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="">Delete This Product Size?</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <input type="hidden" value="<?= $_GET['pId'] ?>" name="product_id">
-                                                        <input type="hidden" id="deleteProdSizeId" name="deleteProdSizeId">
-                                                        <h4>Are you sure you want to delete this Product Size?</h4>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <button type="submit" name="delete-product-size" class="btn btn-danger">Delete
-                                                            Product Size</button>
+                                        <!--Delete Product Size Modal -->
+                                        <form method="post" action="classes/process.php?action=delete-product-size">
+                                            <div class="modal fade" id="deleteProdSizeModal" tabindex="-1" aria-labelledby="deleteProdSizeModal" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="">Delete This Product Size?</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <input type="hidden" value="<?= $_GET['pId'] ?>" name="product_id">
+                                                            <input type="hidden" id="deleteProdSizeId" name="deleteProdSizeId">
+                                                            <h4>Are you sure you want to delete this Product Size?</h4>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <button type="submit" name="delete-product-size" class="btn btn-danger">Delete
+                                                                Product Size</button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </form>
+                                        </form>
 
-                                    <!--Delete Product Slot Modal -->
-                                    <form method="post" action="classes/process.php?action=delete-product-slot">
-                                        <div class="modal fade" id="deleteProdSlotModal" tabindex="-1" aria-labelledby="deleteProdSlotModal" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="">Delete This Product Slot?</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <input type="hidden" value="<?= $_GET['pId'] ?>" name="product_id">
-                                                        <input type="hidden" id="deleteProdSlotId" name="deleteProdSlotId">
-                                                        <h4>Are you sure you want to delete this Product Slot?</h4>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <button type="submit" name="delete-product-slot" class="btn btn-danger">Delete
-                                                            Product Slot</button>
+                                        <!--Delete Product Slot Modal -->
+                                        <form method="post" action="classes/process.php?action=delete-product-slot">
+                                            <div class="modal fade" id="deleteProdSlotModal" tabindex="-1" aria-labelledby="deleteProdSlotModal" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="">Delete This Product Slot?</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <input type="hidden" value="<?= $_GET['pId'] ?>" name="product_id">
+                                                            <input type="hidden" id="deleteProdSlotId" name="deleteProdSlotId">
+                                                            <h4>Are you sure you want to delete this Product Slot?</h4>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <button type="submit" name="delete-product-slot" class="btn btn-danger">Delete
+                                                                Product Slot</button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </form>
+                                        </form>
+                                    <?php endif; ?>
 
                                 </div>
                             </div>
@@ -222,7 +231,11 @@ $product_slots = $product->getProductWSSlot("product_slots", $product_id);
                                                         <div class="col-md-6">
                                                             <p class="text-info mb-0">Status: <?= $product_weight['status'] == '0' ? 'Visible' : 'Hidden' ?></p>
                                                         </div>
-                                                        <div class="col-md-6 text-end"><button class="btn btn-danger btn-sm mt-3 mb-0 deleteProdWeight" data-bs-toggle="modal" value="<?= $product_weight['id'] ?? '' ?>">Delete Weight</button></div>
+
+                                                        <?php if ($_SESSION['user_data']['role'] == "2") : ?>
+                                                            <div class="col-md-6 text-end"><button class="btn btn-danger btn-sm mt-3 mb-0 deleteProdWeight" data-bs-toggle="modal" value="<?= $product_weight['id'] ?? '' ?>">Delete Weight</button></div>
+                                                        <?php endif; ?>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -261,7 +274,10 @@ $product_slots = $product->getProductWSSlot("product_slots", $product_id);
                                                         <div class="col-md-6">
                                                             <p class="text-info mb-0">Status: <?= $product_size['status'] == '0' ? 'Visible' : 'Hidden' ?></p>
                                                         </div>
-                                                        <div class="col-md-6 text-end"><button class="btn btn-danger btn-sm mt-3 mb-0 deleteProdSize" data-bs-toggle="modal" value="<?= $product_size['id'] ?? '' ?>">Delete Size</button></div>
+
+                                                        <?php if ($_SESSION['user_data']['role'] == "2") : ?>
+                                                            <div class="col-md-6 text-end"><button class="btn btn-danger btn-sm mt-3 mb-0 deleteProdSize" data-bs-toggle="modal" value="<?= $product_size['id'] ?? '' ?>">Delete Size</button></div>
+                                                        <?php endif; ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -300,7 +316,10 @@ $product_slots = $product->getProductWSSlot("product_slots", $product_id);
                                                         <div class="col-md-6">
                                                             <p class="text-info mb-0">Status: <?= $product_slot['status'] == '0' ? 'Visible' : 'Hidden' ?></p>
                                                         </div>
-                                                        <div class="col-md-6 text-end"><button class="btn btn-danger btn-sm mt-3 mb-0 deleteProdSlot" data-bs-toggle="modal" value="<?= $product_slot['id'] ?? '' ?>">Delete Slot</button></div>
+
+                                                        <?php if ($_SESSION['user_data']['role'] == "2") : ?>
+                                                            <div class="col-md-6 text-end"><button class="btn btn-danger btn-sm mt-3 mb-0 deleteProdSlot" data-bs-toggle="modal" value="<?= $product_slot['id'] ?? '' ?>">Delete Slot</button></div>
+                                                        <?php endif; ?>
                                                     </div>
                                                 </div>
                                             </div>

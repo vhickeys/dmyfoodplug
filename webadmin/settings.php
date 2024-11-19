@@ -2,7 +2,7 @@
 
 require('classes/functions.php');
 
-authCheck();
+adminAuth();
 
 $title = "Web Settings";
 include_once('components/head.php');

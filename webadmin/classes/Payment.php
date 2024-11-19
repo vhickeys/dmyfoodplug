@@ -113,7 +113,10 @@ class Payment
 
             invoicePaidMail("support@dmyfoodplug.com", $email, $fullname, $trkNo, $date, $subtotal_email, $discount_percentage ?? '0', $shipping_fee_email, $grand_total_email, $address, $city, $country, $phone, $office_phone, $office_email, $office_address, $order_items_html, $shipping_location);
 
+            invoicePaidNotice("support@dmyfoodplug.com", $office_email, $fullname, $trkNo, $date, $subtotal_email, $discount_percentage ?? '0', $shipping_fee_email, $grand_total_email, $address, $city, $country, $phone, $office_phone, $office_email, $office_address, $order_items_html, $shipping_location);
+
             $this->updateOrderStatus($reference, $user_id, $trkNo);
+            
             header("Location: ../../payment_success.php?userID=$user_id&trkNo=$trkNo");
             exit;
         }

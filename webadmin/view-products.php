@@ -83,23 +83,23 @@ $allProducts = $product->getProductCat();
                                                 </td>
 
                                                 <td>
-                                                    <?php if($product['trending'] == '1') : ?>
+                                                    <?php if ($product['trending'] == '1') : ?>
                                                         <span class="text-success">Trending</span>
-                                                    <?php elseif($product['trending'] == '0') : ?>
+                                                    <?php elseif ($product['trending'] == '0') : ?>
                                                         <span class="text-danger">Not Trending</span>
                                                     <?php endif; ?>
                                                 </td>
                                                 <td>
-                                                    <?php if($product['soldout'] == '1') : ?>
+                                                    <?php if ($product['soldout'] == '1') : ?>
                                                         <span class="text-danger">Sold Out!</span>
-                                                    <?php elseif($product['soldout'] == '0') : ?>
+                                                    <?php elseif ($product['soldout'] == '0') : ?>
                                                         <span class="text-success">Selling!</span>
                                                     <?php endif; ?>
                                                 </td>
                                                 <td>
-                                                    <?php if($product['status'] == '1') : ?>
+                                                    <?php if ($product['status'] == '1') : ?>
                                                         <span class="text-danger">Hidden!</span>
-                                                    <?php elseif($product['status'] == '0') : ?>
+                                                    <?php elseif ($product['status'] == '0') : ?>
                                                         <span class="text-success">Visible!</span>
                                                     <?php endif; ?>
                                                 </td>
@@ -108,9 +108,9 @@ $allProducts = $product->getProductCat();
                                                 <td>
                                                     <div class="d-flex">
                                                         <a href="product-details.php?pId=<?= $product['id'] ?>" class="btn btn-success shadow btn-xs sharp me-1"><i class="fas fa-eye"></i></a>
-                                                        <a href="edit-product.php?pId=<?= $product['id'] ?>" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-
                                                         <?php if ($_SESSION['user_data']['role'] == "2") : ?>
+                                                            <a href="edit-product.php?pId=<?= $product['id'] ?>" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
+
                                                             <button href="delete-product.php?pId=<?= $product['id'] ?>" class="btn btn-danger shadow btn-xs sharp" disabled><i class="fa fa-trash"></i></button>
                                                         <?php endif; ?>
 

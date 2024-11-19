@@ -2,7 +2,7 @@
 
 require('classes/functions.php');
 
-authCheck();
+adminAuth();
 
 $title = "View Shippings";
 include_once('components/head.php');

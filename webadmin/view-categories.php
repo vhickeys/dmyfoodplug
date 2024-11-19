@@ -83,9 +83,13 @@ $allCategories = $category->getCategories();
                                                 <td><?php echo date("H:i:s d-M-Y", strtotime($category['date'])) ?></td>
                                                 <td>
                                                     <div class="d-flex">
-                                                        <a href="edit-category.php?cId=<?= $category['id'] ?>" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
+                                                        <?php if ($_SESSION['user_data']['role'] == "1") : ?>
+                                                            <button class="btn btn-danger" disabled>No action for this role</button>
+                                                        <?php endif; ?>
 
                                                         <?php if ($_SESSION['user_data']['role'] == "2") : ?>
+                                                            <a href="edit-category.php?cId=<?= $category['id'] ?>" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
+
                                                             <button href="delete-category.php?cId=<?= $category['id'] ?>" class="btn btn-danger shadow btn-xs sharp" disabled><i class="fa fa-trash"></i></button>
                                                         <?php endif; ?>
 

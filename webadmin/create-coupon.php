@@ -2,7 +2,7 @@
 
 require('classes/functions.php');
 
-authCheck();
+adminAuth();
 
 $title = "Create Coupon Code";
 include_once('components/head.php');

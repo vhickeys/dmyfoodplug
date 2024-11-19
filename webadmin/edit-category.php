@@ -3,7 +3,7 @@
 require('classes/functions.php');
 $category_id = $_GET["cId"];
 
-authCheckById($category_id, "view-categories");
+adminCheckById($category_id, "view-categories");
 
 $title = "Edit Category";
 include_once('components/head.php');

@@ -3,7 +3,7 @@
 require('classes/functions.php');
 $shipping_id = $_GET["shipId"];
 
-authCheckById($shipping_id, "view-shippings");
+adminCheckById($shipping_id, "view-shippings");
 
 $title = "Edit Category";
 include_once('components/head.php');

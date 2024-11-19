@@ -3,7 +3,7 @@
 require('classes/functions.php');
 $product_id = $_GET["pId"];
 
-authCheckById($product_id, "view-products");
+adminCheckById($product_id, "view-products");
 
 $title = "Edit Product";
 include_once('components/head.php');
